@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import ContactHero from "@/components/contact/ContactHero";
 import ContactForm from "@/components/contact/ContactForm";
-import SimpleContactTest from "@/components/contact/SimpleContactTest";
-import OfficeLocations from "@/components/contact/OfficeLocations";
+// import SimpleContactTest from "@/components/contact/SimpleContactTest";
+// import OfficeLocations from "@/components/contact/OfficeLocations";
 import ContactInfo from "@/components/contact/ContactInfo";
 
 export const metadata: Metadata = {
@@ -28,10 +28,10 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#F8FAFC]">
       <ContactHero />
       <div className="py-10">
-        <SimpleContactTest />
+        {/* <SimpleContactTest /> */}
       </div>
       <ContactForm />
-      <OfficeLocations />
+      {/* <OfficeLocations /> */}
       <ContactInfo />
     </div>
   );
