@@ -20,7 +20,7 @@ export default function Header() {
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
-    }, 200); // 200ms ka delay taaki user easily menu tak pahunch sake
+    }, 200);
   };
 
   return (
@@ -249,24 +249,28 @@ export default function Header() {
                   <div className="space-y-2 text-sm max-h-48 overflow-y-auto">
                     <Link
                       href="/services/customer-support"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Customer Support (Voice / Chat / Email)
                     </Link>
                     <Link
                       href="/services/technical-support"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Technical Support
                     </Link>
                     <Link
                       href="/services/technical-helpdesk"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Technical Helpdesk Services
                     </Link>
                     <Link
                       href="/services/ticketing-management"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Ticketing Management
@@ -281,24 +285,28 @@ export default function Header() {
                   <div className="space-y-2 text-sm max-h-48 overflow-y-auto">
                     <Link
                       href="/services/back-office"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Back Office Operations
                     </Link>
                     <Link
                       href="/services/operations-management"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Operations Management
                     </Link>
                     <Link
                       href="/services/collections"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Collections Process
                     </Link>
                     <Link
                       href="/services/recruitment"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Recruitment & Talent Support
@@ -313,24 +321,28 @@ export default function Header() {
                   <div className="space-y-2 text-sm max-h-48 overflow-y-auto">
                     <Link
                       href="/services/data-processing"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Data Processing & Data Services
                     </Link>
                     <Link
                       href="/services/analytics-reporting"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Analytics & Reporting
                     </Link>
                     <Link
                       href="/services/web-development"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Apps and Web Development
                     </Link>
                     <Link
                       href="/services/graphic-design"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Graphic Design & Printing Solutions
@@ -383,36 +395,42 @@ export default function Header() {
                   <div className="space-y-4">
                     <Link
                       href="/about"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       About Ashentrix
                     </Link>
                     <Link
                       href="/about/vision-mission"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       Vision & Mission
                     </Link>
                     <Link
                       href="/leadership"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       Leadership
                     </Link>
                     <Link
                       href="/about/awards"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       Awards & Recognition
                     </Link>
                     <Link
                       href="/about/news-media"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       News & Media
                     </Link>
                     <Link
                       href="/about/investors-partners"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       Investors & Partners
@@ -427,18 +445,21 @@ export default function Header() {
                   <div className="space-y-4">
                     <Link
                       href="/careers"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       Careers
                     </Link>
                     <Link
                       href="/sustainability"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       Sustainability
                     </Link>
                     <Link
                       href="/contact"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       Contact Us
@@ -480,30 +501,35 @@ export default function Header() {
                   <div className="space-y-3 text-sm">
                     <Link
                       href="/industries/insurance"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Insurance
                     </Link>
                     <Link
                       href="/industries/healthcare"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Healthcare
                     </Link>
                     <Link
                       href="/industries/telecom"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Telecom
                     </Link>
                     <Link
                       href="/industries/ecommerce"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       E-commerce
                     </Link>
                     <Link
                       href="/industries/finance"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Finance & Accounting
@@ -518,24 +544,28 @@ export default function Header() {
                   <div className="space-y-3 text-sm">
                     <Link
                       href="/industries/logistics"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Logistics & Supply Chain
                     </Link>
                     <Link
                       href="/industries/travel"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Travel, Hospitality & Cargo
                     </Link>
                     <Link
                       href="/industries/entertainment"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Entertainment & Social Platforms
                     </Link>
                     <Link
                       href="/industries/it-hardware"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       IT, Hardware & IoT
@@ -570,24 +600,28 @@ export default function Header() {
                   <div className="space-y-3 text-sm">
                     <Link
                       href="/careers/life-at-ashentrix"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Life at Ashentrix
                     </Link>
                     <Link
                       href="/careers/current-openings"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Current Openings
                     </Link>
                     <Link
                       href="/careers/internship"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Internship Programs
                     </Link>
                     <Link
                       href="/careers/apply"
+                      onClick={() => setActiveDropdown(null)}
                       className="block text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       Apply Now
@@ -618,6 +652,7 @@ export default function Header() {
                   </p>
                   <Link
                     href="/careers/apply"
+                    onClick={() => setActiveDropdown(null)}
                     className="inline-block bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-colors"
                   >
                     View Open Positions →
