@@ -1,13 +1,27 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = (dropdownName: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setActiveDropdown(dropdownName);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200); // 200ms ka delay taaki user easily menu tak pahunch sake
+  };
 
   return (
     <div className="relative">
@@ -33,8 +47,8 @@ export default function Header() {
               {/* About */}
               <div
                 className="relative"
-                onMouseEnter={() => setActiveDropdown("about")}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() => handleMouseEnter("about")}
+                onMouseLeave={handleMouseLeave}
               >
                 <button className="text-gray-300 hover:text-white hover:bg-gray-800 transition-all px-4 py-3 flex items-center gap-1">
                   About
@@ -57,8 +71,8 @@ export default function Header() {
               {/* Industries */}
               <div
                 className="relative"
-                onMouseEnter={() => setActiveDropdown("industries")}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() => handleMouseEnter("industries")}
+                onMouseLeave={handleMouseLeave}
               >
                 <button className="text-gray-300 hover:text-white hover:bg-gray-800 transition-all px-4 py-3 flex items-center gap-1">
                   Industries
@@ -81,8 +95,8 @@ export default function Header() {
               {/* Services */}
               <div
                 className="relative"
-                onMouseEnter={() => setActiveDropdown("solutions")}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() => handleMouseEnter("solutions")}
+                onMouseLeave={handleMouseLeave}
               >
                 <button className="text-gray-300 hover:text-white hover:bg-gray-800 transition-all px-4 py-3 flex items-center gap-1">
                   Services
@@ -105,8 +119,8 @@ export default function Header() {
               {/* Careers */}
               <div
                 className="relative"
-                onMouseEnter={() => setActiveDropdown("careers")}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() => handleMouseEnter("careers")}
+                onMouseLeave={handleMouseLeave}
               >
                 <button className="text-gray-300 hover:text-white hover:bg-gray-800 transition-all px-4 py-3 flex items-center gap-1">
                   Careers
@@ -219,8 +233,10 @@ export default function Header() {
       {activeDropdown && (
         <div
           className="absolute top-full left-0 right-0 w-full bg-white shadow-2xl border-b border-gray-200 z-60"
-          onMouseEnter={() => setActiveDropdown(activeDropdown)}
-          onMouseLeave={() => setActiveDropdown(null)}
+          onMouseEnter={() => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+          }}
+          onMouseLeave={handleMouseLeave}
         >
           <div className="max-w-7xl mx-auto px-6 py-12">
             {/* Services Mega Menu */}
@@ -672,7 +688,7 @@ export default function Header() {
                   className="w-full flex items-center justify-between text-white text-lg font-medium py-4 px-4 hover:bg-white/10 rounded-lg transition-colors"
                   onClick={() =>
                     setActiveDropdown(
-                      activeDropdown === "about" ? null : "about"
+                      activeDropdown === "about" ? null : "about",
                     )
                   }
                 >
@@ -726,7 +742,7 @@ export default function Header() {
                   className="w-full flex items-center justify-between text-white text-lg font-medium py-4 px-4 hover:bg-white/10 rounded-lg transition-colors"
                   onClick={() =>
                     setActiveDropdown(
-                      activeDropdown === "industries" ? null : "industries"
+                      activeDropdown === "industries" ? null : "industries",
                     )
                   }
                 >
@@ -801,7 +817,7 @@ export default function Header() {
                   className="w-full flex items-center justify-between text-white text-lg font-medium py-4 px-4 hover:bg-white/10 rounded-lg transition-colors"
                   onClick={() =>
                     setActiveDropdown(
-                      activeDropdown === "services" ? null : "services"
+                      activeDropdown === "services" ? null : "services",
                     )
                   }
                 >
@@ -869,7 +885,7 @@ export default function Header() {
                   className="w-full flex items-center justify-between text-white text-lg font-medium py-4 px-4 hover:bg-white/10 rounded-lg transition-colors"
                   onClick={() =>
                     setActiveDropdown(
-                      activeDropdown === "careers" ? null : "careers"
+                      activeDropdown === "careers" ? null : "careers",
                     )
                   }
                 >
