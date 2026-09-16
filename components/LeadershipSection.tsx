@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 interface LeadershipMember {
   name: string;
@@ -100,9 +101,11 @@ export default function LeadershipSection() {
             Join our team of industry experts and shape the future of business
             operations
           </p>
-          <button className="bg-[#280b57] text-white px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold hover:bg-[#280b57]/90 transition-colors rounded-lg">
-            View Career Opportunities
-          </button>
+          <Link href="/career-opportunities">
+            <button className="bg-[#280b57] text-white px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold hover:bg-[#280b57]/90 transition-colors rounded-lg">
+              View Career Opportunities
+            </button>
+          </Link>
         </div>
       </div>
     </section>
