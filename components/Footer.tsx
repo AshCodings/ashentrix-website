@@ -403,15 +403,15 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-{/* Bottom Bar */}
-        <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-6 lg:gap-6 text-xs sm:text-sm text-gray-400 pt-8 mt-4 border-t border-gray-800">
-          
-          <p className="text-center lg:text-left order-2 lg:order-1">
+        {/* Bottom Bar */}
+        <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-6 text-xs sm:text-sm text-gray-400 pt-8 mt-4 border-t border-gray-800">
+          {/* Copyright text - Goes Bottom on Mobile, Left on Desktop */}
+          <p className="text-center lg:text-left">
             © 2026 Ashentrix. All rights reserved worldwide.
           </p>
-          
-          <div className="flex gap-3 sm:gap-4 justify-center lg:justify-end order-1 lg:order-2 w-full lg:w-auto">
+
+          {/* Social Icons - Goes Top on Mobile, Right on Desktop */}
+          <div className="flex gap-3 sm:gap-4 justify-center lg:justify-end">
             <a
               href="https://www.linkedin.com/company/ashentrix/"
               className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#280b57] transition-all hover:scale-110"
@@ -464,7 +464,6 @@ export default function Footer() {
               </svg>
             </a>
           </div>
-
         </div>
       </div>
     </footer>
