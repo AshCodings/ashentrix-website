@@ -57,9 +57,9 @@ export default function TestimonialsSection() {
 
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 3000); / Har 5 second mein slide change hogi
+    }, 4000); 
 
-    
+   
     return () => clearInterval(timer);
   }, [isHovered, testimonials.length]);
 
