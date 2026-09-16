@@ -1,7 +1,7 @@
 import LeadershipHero from "@/components/leadership/LeadershipHero";
 import ExecutiveTeam from "@/components/leadership/ExecutiveTeam";
 import TeamValues from "@/components/leadership/TeamValues";
-import GlobalPresence from "@/components/leadership/GlobalPresence";
+// import GlobalPresence from "@/components/leadership/GlobalPresence";
 
 export default function LeadershipPage() {
   return (
@@ -9,7 +9,7 @@ export default function LeadershipPage() {
       <LeadershipHero />
       <ExecutiveTeam />
       <TeamValues />
-      <GlobalPresence />
+      {/* <GlobalPresence /> */}
     </div>
   );
 }
