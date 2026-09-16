@@ -69,15 +69,16 @@ export default function ContactSection() {
                   <h3 className="text-lg font-bold text-gray-900 mb-1">
                     Email Us
                   </h3>
-                  <p className="text-gray-600 text-sm mb-2">
-                    Our team typically responds within 24 hours
-                  </p>
-                  <a
+                     <a
                     href="mailto:service@ashentrix.com"
                     className="text-gray-900 hover:text-gray-600 font-semibold transition-colors"
                   >
                     service@ashentrix.com
                   </a>
+                  <p className="text-gray-600 text-sm mb-2">
+                    Our team typically responds within 24 hours
+                  </p>
+               
                 </div>
               </div>
             </div>
@@ -105,17 +106,18 @@ export default function ContactSection() {
                   <h3 className="text-lg font-bold text-gray-900 mb-1">
                     Call Us
                   </h3>
-                  <p className="text-gray-600 text-sm mb-2">
-                    Mon to Fri: 10 AM to 6 PM
-                    <br />
-                    Sat & Sun: Closed
-                  </p>
+                 
                   <a
                     href="tel:+919711179821"
                     className="text-gray-900 hover:text-gray-600 font-semibold transition-colors"
                   >
                     +91-971 117 9821
                   </a>
+                   <p className="text-gray-600 text-sm mb-2">
+                    Mon to Fri: 10 AM to 6 PM
+                    <br />
+                    Sat & Sun: Closed
+                  </p>
                 </div>
               </div>
             </div>
@@ -149,15 +151,16 @@ export default function ContactSection() {
                   <h3 className="text-lg font-bold text-gray-900 mb-1">
                     Visit Us
                   </h3>
-                  <p className="text-gray-600 text-sm mb-2">
-                    Come say hello at our office
-                  </p>
+                  
                   <p className="text-gray-900 text-sm">
                     A-22, 1st Floor, Sector 4, Noida,
                     <br />
                     Gautam Buddha Nagar, Uttar Pradesh,
                     <br />
                     India - 201301
+                  </p>
+                  <p className="text-gray-600 text-sm mb-2">
+                    Come say hello at our office
                   </p>
                 </div>
               </div>
