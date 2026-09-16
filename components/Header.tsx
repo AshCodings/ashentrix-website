@@ -30,18 +30,18 @@ export default function Header() {
       <header className="bg-white/85 backdrop-blur-xl border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
         <div className="max-w-full mx-auto">
           <div className="flex items-center justify-between px-6 py-2">
-            {/* Logo Section */}
+{/* Logo Section */}
             <div className="flex items-center">
               <Link
                 href="/"
-                className="group relative flex items-center justify-center h-12 w-[150px] overflow-hidden"
+                className="group relative flex items-center justify-start h-12 w-[150px] overflow-hidden"
               >
                 <Image
                   src="/logo-only.jpeg"
                   alt="Ashentrix Solutions Logo"
                   width={180}
                   height={60}
-                  className="h-12 w-auto object-contain transition-all duration-500 ease-in-out group-hover:scale-50 group-hover:opacity-0"
+                  className="h-12 w-auto object-contain object-left transition-all duration-500 ease-in-out group-hover:scale-50 group-hover:opacity-0"
                   priority
                 />
 
@@ -50,7 +50,7 @@ export default function Header() {
                   alt="Ashentrix Solutions Hover Logo"
                   width={180}
                   height={60}
-                  className="absolute inset-0 h-12 w-full object-contain opacity-0 translate-y-full transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:opacity-100"
+                  className="absolute inset-0 h-12 w-full object-contain object-left opacity-0 translate-y-full transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:opacity-100"
                 />
               </Link>
             </div>
