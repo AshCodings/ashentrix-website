@@ -57,9 +57,9 @@ export default function TestimonialsSection() {
 
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 4000); // Har 5 second mein slide change hogi
+    }, 3000); / Har 5 second mein slide change hogi
 
-    // Cleanup function: component unmount ya hover state change hone par timer clear karein
+    
     return () => clearInterval(timer);
   }, [isHovered, testimonials.length]);
 
