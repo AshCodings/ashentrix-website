@@ -56,6 +56,46 @@ const IndustryCard = ({ title, image, href }: IndustryCardProps) => {
 export default function IndustriesSection() {
   const industries: IndustryCardProps[] = [
     {
+      title: "Social Platforms",
+      image: "/images/industries/social-platforms.jpg",
+      href: "/industries/social-platforms",
+    },
+    {
+      title: "Real Estate",
+      image: "/images/industries/real-estate.jpg",
+      href: "/industries/real-estate",
+    },
+    {
+      title: "Media & Communications",
+      image: "/images/industries/media-communications.jpg",
+      href: "/industries/media-communications",
+    },
+    {
+      title: "Logistics & Supply Chain",
+      image: "/images/industries/logistics-supply-chain.jpg",
+      href: "/industries/logistics-supply-chain",
+    },
+    {
+      title: "Hardware & IoT",
+      image: "/images/industries/hardware-iot.jpg",
+      href: "/industries/hardware-iot",
+    },
+    {
+      title: "Govt. & Public Sector",
+      image: "/images/industries/govt-public-sector.jpg",
+      href: "/industries/govt-public-sector",
+    },
+    {
+      title: "Energy & Utility",
+      image: "/images/industries/energy-utility.jpg",
+      href: "/industries/energy-utility",
+    },
+    {
+      title: "Education",
+      image: "/images/industries/education.jpg",
+      href: "/industries/education",
+    },
+    {
       title: "Insurance",
       image: "/images/industries/insurance.jpg",
       href: "/industries/insurance",
