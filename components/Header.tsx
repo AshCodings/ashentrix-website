@@ -493,10 +493,10 @@ export default function Header() {
                       </div>
                       <div>
                         <span className="font-semibold">Headquarters:</span>{" "}
-                        Delhi NCR, India
+                        Noida Uttar Pradesh, India
                       </div>
                       <div>
-                        <span className="font-semibold">Team:</span> Growing
+                        <span className="font-semibold">Team:</span> 50 to 100
                       </div>
                       <div>
                         <span className="font-semibold">Focus:</span> New
