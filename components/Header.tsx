@@ -305,21 +305,21 @@ export default function Header() {
                       </Link>
                       <Link
                         href="/services/technical-support"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Technical Support
                       </Link>
                       <Link
                         href="/services/technical-helpdesk"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Technical Helpdesk Services
                       </Link>
                       <Link
                         href="/services/ticketing-management"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Ticketing Management
@@ -334,28 +334,28 @@ export default function Header() {
                     <div className="space-y-1 text-sm max-h-48 overflow-y-auto">
                       <Link
                         href="/services/back-office"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Back Office Operations
                       </Link>
                       <Link
                         href="/services/operations-management"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Operations Management
                       </Link>
                       <Link
                         href="/services/collections"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Collections Process
                       </Link>
                       <Link
                         href="/services/recruitment"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Recruitment & Talent Support
@@ -370,28 +370,28 @@ export default function Header() {
                     <div className="space-y-1 text-sm max-h-48 overflow-y-auto">
                       <Link
                         href="/services/data-processing"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Data Processing & Data Services
                       </Link>
                       <Link
                         href="/services/analytics-reporting"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Analytics & Reporting
                       </Link>
                       <Link
                         href="/services/web-development"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Apps and Web Development
                       </Link>
                       <Link
                         href="/services/graphic-design"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Graphic Design & Printing Solutions
@@ -411,42 +411,42 @@ export default function Header() {
                     <div className="space-y-1">
                       <Link
                         href="/about"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         About Ashentrix
                       </Link>
                       <Link
                         href="/about/vision-mission"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Vision & Mission
                       </Link>
                       <Link
                         href="/leadership"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Leadership
                       </Link>
                       <Link
                         href="/about/awards"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Awards & Recognition
                       </Link>
                       <Link
                         href="/about/news-media"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         News & Media
                       </Link>
                       <Link
                         href="/about/investors-partners"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Investors & Partners
@@ -461,21 +461,21 @@ export default function Header() {
                     <div className="space-y-1">
                       <Link
                         href="/careers"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Careers
                       </Link>
                       <Link
                         href="/sustainability"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Sustainability
                       </Link>
                       <Link
                         href="/contact"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Contact Us
@@ -517,35 +517,35 @@ export default function Header() {
                     <div className="space-y-1 text-sm">
                       <Link
                         href="/industries/insurance"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Insurance
                       </Link>
                       <Link
                         href="/industries/healthcare"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Healthcare
                       </Link>
                       <Link
                         href="/industries/telecom"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Telecom
                       </Link>
                       <Link
                         href="/industries/ecommerce"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         E-commerce
                       </Link>
                       <Link
                         href="/industries/finance"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Finance & Accounting
@@ -560,28 +560,28 @@ export default function Header() {
                     <div className="space-y-1 text-sm">
                       <Link
                         href="/industries/logistics"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Logistics & Supply Chain
                       </Link>
                       <Link
                         href="/industries/travel"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Travel, Hospitality & Cargo
                       </Link>
                       <Link
                         href="/industries/entertainment"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Entertainment & Social Platforms
                       </Link>
                       <Link
                         href="/industries/it-hardware"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         IT, Hardware & IoT
@@ -616,28 +616,28 @@ export default function Header() {
                     <div className="space-y-1 text-sm">
                       <Link
                         href="/careers/life-at-ashentrix"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Life at Ashentrix
                       </Link>
                       <Link
                         href="/careers/current-openings"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Current Openings
                       </Link>
                       <Link
                         href="/careers/internship"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Internship Programs
                       </Link>
                       <Link
                         href="/careers/apply"
-                        className="block text-gray-600 hover:text-[#280b57] hover:bg-gray-50 px-3 py-2 rounded-lg transition-all"
+                        className="block text-gray-600 hover:text-[#280b57] hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
                         Apply Now
@@ -717,7 +717,7 @@ export default function Header() {
               <nav className="p-4 space-y-1 flex-grow">
                 <Link
                   href="/"
-                  className="block text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
+                  className="block text-gray-900 text-lg font-semibold py-3 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Home
@@ -726,7 +726,7 @@ export default function Header() {
                 {/* About Section */}
                 <div>
                   <button
-                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
+                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-xl transition-colors"
                     onClick={() =>
                       setActiveDropdown(
                         activeDropdown === "about" ? null : "about",
@@ -762,21 +762,21 @@ export default function Header() {
                       >
                         <Link
                           href="/about"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           About Ashentrix
                         </Link>
                         <Link
                           href="/leadership"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Leadership
                         </Link>
                         <Link
                           href="/about/vision-mission"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Vision & Mission
@@ -789,7 +789,7 @@ export default function Header() {
                 {/* Industries Section */}
                 <div>
                   <button
-                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
+                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-xl transition-colors"
                     onClick={() =>
                       setActiveDropdown(
                         activeDropdown === "industries" ? null : "industries",
@@ -825,35 +825,35 @@ export default function Header() {
                       >
                         <Link
                           href="/industries"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           All Industries
                         </Link>
                         <Link
                           href="/industries/insurance"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Insurance
                         </Link>
                         <Link
                           href="/industries/healthcare"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Healthcare
                         </Link>
                         <Link
                           href="/industries/telecom"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Telecom
                         </Link>
                         <Link
                           href="/industries/finance"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Banking & Finance
@@ -902,28 +902,28 @@ export default function Header() {
                       >
                         <Link
                           href="/services/customer-support"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Customer Support
                         </Link>
                         <Link
                           href="/services/technical-support"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Technical Support
                         </Link>
                         <Link
                           href="/services/back-office"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Back Office Operations
                         </Link>
                         <Link
                           href="/services/data-processing"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Data Processing
@@ -936,7 +936,7 @@ export default function Header() {
                 {/* Careers Section */}
                 <div>
                   <button
-                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
+                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-xl transition-colors"
                     onClick={() =>
                       setActiveDropdown(
                         activeDropdown === "careers" ? null : "careers",
@@ -972,21 +972,21 @@ export default function Header() {
                       >
                         <Link
                           href="/careers"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Job Opportunities
                         </Link>
                         <Link
                           href="/careers/culture"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Company Culture
                         </Link>
                         <Link
                           href="/careers/apply"
-                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Apply Now
@@ -998,7 +998,7 @@ export default function Header() {
 
                 <Link
                   href="/contact"
-                  className="block text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
+                  className="block text-gray-900 text-lg font-semibold py-3 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Contact
