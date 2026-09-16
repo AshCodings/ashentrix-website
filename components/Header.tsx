@@ -30,7 +30,7 @@ export default function Header() {
       <header className="bg-white/85 backdrop-blur-xl border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
         <div className="max-w-full mx-auto">
           <div className="flex items-center justify-between px-6 py-2">
-{/* Logo Section */}
+            {/* Logo Section */}
             <div className="flex items-center">
               <Link
                 href="/"
@@ -55,7 +55,7 @@ export default function Header() {
               </Link>
             </div>
 
-            {/* Main Navigation - Premium Hover Pills */}
+            {/* Main Navigation - Premium Hover Pills  */}
             <nav className="hidden lg:flex items-center gap-1 text-sm font-medium">
               {/* About */}
               <div
@@ -63,13 +63,13 @@ export default function Header() {
                 onMouseEnter={() => handleMouseEnter("about")}
                 onMouseLeave={handleMouseLeave}
               >
-                <button className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 rounded-full transition-all duration-300 px-4 py-2.5 flex items-center gap-1.5">
+                <button className="text-gray-600 hover:text-white hover:bg-[#280b57] rounded-full transition-all duration-300 px-4 py-2.5 flex items-center gap-1.5">
                   About
                   <svg
                     className={`w-3.5 h-3.5 transition-transform duration-300 ${
                       activeDropdown === "about"
-                        ? "rotate-180 text-[#280b57]"
-                        : "text-gray-400"
+                        ? "rotate-180 text-white"
+                        : "text-gray-400 group-hover:text-white"
                     }`}
                     fill="none"
                     stroke="currentColor"
@@ -91,13 +91,13 @@ export default function Header() {
                 onMouseEnter={() => handleMouseEnter("industries")}
                 onMouseLeave={handleMouseLeave}
               >
-                <button className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 rounded-full transition-all duration-300 px-4 py-2.5 flex items-center gap-1.5">
+                <button className="text-gray-600 hover:text-white hover:bg-[#280b57] rounded-full transition-all duration-300 px-4 py-2.5 flex items-center gap-1.5">
                   Industries
                   <svg
                     className={`w-3.5 h-3.5 transition-transform duration-300 ${
                       activeDropdown === "industries"
-                        ? "rotate-180 text-[#280b57]"
-                        : "text-gray-400"
+                        ? "rotate-180 text-white"
+                        : "text-gray-400 group-hover:text-white"
                     }`}
                     fill="none"
                     stroke="currentColor"
@@ -119,13 +119,13 @@ export default function Header() {
                 onMouseEnter={() => handleMouseEnter("solutions")}
                 onMouseLeave={handleMouseLeave}
               >
-                <button className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 rounded-full transition-all duration-300 px-4 py-2.5 flex items-center gap-1.5">
+                <button className="text-gray-600 hover:text-white hover:bg-[#280b57] rounded-full transition-all duration-300 px-4 py-2.5 flex items-center gap-1.5">
                   Services
                   <svg
                     className={`w-3.5 h-3.5 transition-transform duration-300 ${
                       activeDropdown === "solutions"
-                        ? "rotate-180 text-[#280b57]"
-                        : "text-gray-400"
+                        ? "rotate-180 text-white"
+                        : "text-gray-400 group-hover:text-white"
                     }`}
                     fill="none"
                     stroke="currentColor"
@@ -147,13 +147,13 @@ export default function Header() {
                 onMouseEnter={() => handleMouseEnter("careers")}
                 onMouseLeave={handleMouseLeave}
               >
-                <button className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 rounded-full transition-all duration-300 px-4 py-2.5 flex items-center gap-1.5">
+                <button className="text-gray-600 hover:text-white hover:bg-[#280b57] rounded-full transition-all duration-300 px-4 py-2.5 flex items-center gap-1.5">
                   Careers
                   <svg
                     className={`w-3.5 h-3.5 transition-transform duration-300 ${
                       activeDropdown === "careers"
-                        ? "rotate-180 text-[#280b57]"
-                        : "text-gray-400"
+                        ? "rotate-180 text-white"
+                        : "text-gray-400 group-hover:text-white"
                     }`}
                     fill="none"
                     stroke="currentColor"
@@ -172,7 +172,7 @@ export default function Header() {
               {/* Contact */}
               <Link
                 href="/contact"
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 rounded-full transition-all duration-300 px-4 py-2.5"
+                className="text-gray-600 hover:text-white hover:bg-[#280b57] rounded-full transition-all duration-300 px-4 py-2.5"
               >
                 Contact
               </Link>
@@ -243,7 +243,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden text-gray-800 hover:text-black transition-colors p-2 rounded-full hover:bg-gray-100 z-50 relative"
+              className="lg:hidden text-gray-800 hover:text-[#280b57] transition-colors p-2 rounded-full hover:bg-gray-100 z-50 relative"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle mobile menu"
             >
@@ -717,7 +717,7 @@ export default function Header() {
               <nav className="p-4 space-y-1 flex-grow">
                 <Link
                   href="/"
-                  className="block text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 rounded-xl transition-colors"
+                  className="block text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Home
@@ -726,7 +726,7 @@ export default function Header() {
                 {/* About Section */}
                 <div>
                   <button
-                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 rounded-xl transition-colors"
+                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
                     onClick={() =>
                       setActiveDropdown(
                         activeDropdown === "about" ? null : "about",
@@ -789,7 +789,7 @@ export default function Header() {
                 {/* Industries Section */}
                 <div>
                   <button
-                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 rounded-xl transition-colors"
+                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
                     onClick={() =>
                       setActiveDropdown(
                         activeDropdown === "industries" ? null : "industries",
@@ -866,7 +866,7 @@ export default function Header() {
                 {/* Services Section */}
                 <div>
                   <button
-                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 rounded-xl transition-colors"
+                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
                     onClick={() =>
                       setActiveDropdown(
                         activeDropdown === "services" ? null : "services",
@@ -936,7 +936,7 @@ export default function Header() {
                 {/* Careers Section */}
                 <div>
                   <button
-                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 rounded-xl transition-colors"
+                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
                     onClick={() =>
                       setActiveDropdown(
                         activeDropdown === "careers" ? null : "careers",
@@ -998,7 +998,7 @@ export default function Header() {
 
                 <Link
                   href="/contact"
-                  className="block text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 rounded-xl transition-colors"
+                  className="block text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Contact
