@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Shield,
   Heart,
@@ -8,6 +10,9 @@ import {
   Plane,
   Film,
   Computer,
+  Building,
+  GraduationCap,
+  Landmark
 } from "lucide-react";
 
 export default function ClientLogosSection() {
@@ -33,13 +38,29 @@ export default function ClientLogosSection() {
     },
     {
       name: "Entertainment & Social",
-      icon: Film,
+      icon: Film, 
       industry: "Entertainment & Social Platforms",
     },
     {
       name: "IT, Hardware & IoT",
       icon: Computer,
       industry: "IT, Hardware & IoT",
+    },
+    // New Industries Added Below
+    {
+      name: "Real Estate & Property",
+      icon: Building,
+      industry: "Real Estate",
+    },
+    {
+      name: "Education & EdTech",
+      icon: GraduationCap,
+      industry: "Education & EdTech",
+    },
+    {
+      name: "Govt. & Public Sector",
+      icon: Landmark,
+      industry: "Govt. & Public Sector",
     },
   ];
 
@@ -53,7 +74,7 @@ export default function ClientLogosSection() {
         }}
       />
 
-      
+      {/* 2. White Overlay for Readability */}
       <div className="absolute inset-0 bg-white/70" />
 
       {/* 3. Main Content Container */}
@@ -69,26 +90,27 @@ export default function ClientLogosSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-9 gap-6 items-center">
+        {/* Changed grid-cols to 6 for Desktop so 12 items fit perfectly in 2 rows */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
           {industries.map((industry, index) => (
             <div
               key={index}
               className="flex flex-col items-center group cursor-pointer"
             >
-              <div className="w-16 h-16 bg-white/90 shadow-xs border border-gray-200 flex items-center justify-center mb-3 group-hover:from-[#280b57]/10 group-hover:to-[#280b57]/20 group-hover:border-[#280b57]/40 group-hover:shadow-md transition-all duration-300 rounded-xl backdrop-blur-xs">
+              <div className="w-16 h-16 bg-white/90 shadow-sm border border-gray-200 flex items-center justify-center mb-3 group-hover:from-[#280b57]/10 group-hover:to-[#280b57]/20 group-hover:border-[#280b57]/40 group-hover:shadow-md transition-all duration-300 rounded-xl backdrop-blur-sm">
                 <industry.icon
                   size={24}
                   className="text-gray-700 group-hover:text-[#280b57] group-hover:scale-110 transition-all duration-300"
                 />
               </div>
-              <p className="text-xs text-gray-700 text-center font-semibold leading-tight">
+              <p className="text-xs text-gray-700 text-center font-semibold leading-tight px-2">
                 {industry.industry}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-14">
           <p className="text-gray-600 text-sm mb-4 font-medium">
             Target industries for partnerships — Building our client base
           </p>
