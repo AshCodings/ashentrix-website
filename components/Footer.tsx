@@ -41,185 +41,177 @@ export default function Footer() {
         </div>
 
         {/* Links Section - Responsive Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-8 lg:mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-8 lg:mb-12">
           {/* About */}
-          <div className="mb-4 sm:mb-0 flex justify-center">
-            <div className="text-left">
-              <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-white">
-                About
-              </h4>
-              <ul className="space-y-2.5 text-sm text-gray-400">
-                <li>
-                  <Link
-                    href="/about"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    About Ashentrix
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about/vision-mission"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Vision & Mission
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/leadership"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Leadership
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about/awards"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Awards & Recognition
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about/news-media"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    News & Media
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about/investors-partners"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Investors & Partners
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="mb-6 sm:mb-0">
+            <h4 className="font-bold text-base sm:text-lg mb-4 text-white">
+              About
+            </h4>
+            <ul className="space-y-3 text-sm text-gray-400">
+              <li>
+                <Link
+                  href="/about"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  About Ashentrix
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about/vision-mission"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Vision & Mission
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/leadership"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Leadership
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about/awards"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Awards & Recognition
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about/news-media"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  News & Media
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about/investors-partners"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Investors & Partners
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Careers */}
-          <div className="mb-4 sm:mb-0 flex justify-center">
-            <div className="text-left">
-              <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-white">
-                Careers
-              </h4>
-              <ul className="space-y-2.5 text-sm text-gray-400">
-                <li>
-                  <Link
-                    href="/careers/life-at-ashentrix"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Life at Ashentrix
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/careers/current-openings"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Current Openings
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/careers/internship"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Internship Programs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/careers/apply"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Apply Now
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="mb-6 sm:mb-0">
+            <h4 className="font-bold text-base sm:text-lg mb-4 text-white">
+              Careers
+            </h4>
+            <ul className="space-y-3 text-sm text-gray-400">
+              <li>
+                <Link
+                  href="/careers/life-at-ashentrix"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Life at Ashentrix
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/careers/current-openings"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Current Openings
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/careers/internship"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Internship Programs
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/careers/apply"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Apply Now
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Contact */}
-          <div className="mb-4 sm:mb-0 flex justify-center">
-            <div className="text-left">
-              <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-white">
-                Contact
-              </h4>
-              <ul className="space-y-2.5 text-sm text-gray-400">
-                <li>
-                  <Link
-                    href="/contact"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Contact Form
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact/locations"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Office Locations
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact/partner"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Partner With Us
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="mb-6 sm:mb-0">
+            <h4 className="font-bold text-base sm:text-lg mb-4 text-white">
+              Contact
+            </h4>
+            <ul className="space-y-3 text-sm text-gray-400">
+              <li>
+                <Link
+                  href="/contact"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Contact Form
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact/locations"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Office Locations
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact/partner"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Partner With Us
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Legal */}
-          <div className="mb-4 sm:mb-0 flex justify-center">
-            <div className="text-left">
-              <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-white">
-                Legal
-              </h4>
-              <ul className="space-y-2.5 text-sm text-gray-400">
-                <li>
-                  <Link
-                    href="/legal/privacy"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/legal/security"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Data Security & Compliance
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/legal"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Terms of Service
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/legal/disclaimer"
-                    className="hover:text-[#9b87f5] transition-colors"
-                  >
-                    Disclaimer
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="mb-6 sm:mb-0">
+            <h4 className="font-bold text-base sm:text-lg mb-4 text-white">
+              Legal
+            </h4>
+            <ul className="space-y-3 text-sm text-gray-400">
+              <li>
+                <Link
+                  href="/legal/privacy"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/legal/security"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Data Security & Compliance
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/legal/terms"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/legal/disclaimer"
+                  className="hover:text-[#9b87f5] transition-colors"
+                >
+                  Disclaimer
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -228,9 +220,8 @@ export default function Footer() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Headquarters */}
             <div className="flex gap-4 items-start">
-              
               {/* Map Icon with Hover Effect */}
-              <a 
+              <a
                 href="https://maps.app.goo.gl/dUGQXaC57fm5eXQi9"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -259,10 +250,10 @@ export default function Footer() {
 
               <div>
                 <h4 className="font-bold text-white mb-1.5">Headquarters</h4>
-                
+
                 {/* Clickable Address Text */}
                 <p className="text-gray-400 text-sm leading-relaxed mb-2">
-                  <a 
+                  <a
                     href="https://maps.app.goo.gl/dUGQXaC57fm5eXQi9"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -275,7 +266,7 @@ export default function Footer() {
                     India - 201301
                   </a>
                 </p>
-                
+
                 {/* Website Link */}
                 <a
                   href="https://www.ashentrix.com"
@@ -285,7 +276,7 @@ export default function Footer() {
                 >
                   www.ashentrix.com
                 </a>
-              </div> 
+              </div>
             </div>
 
             {/* Reach Us */}
@@ -413,12 +404,14 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-6 text-xs sm:text-sm text-gray-400">
-          <p className="text-center lg:text-left">
+{/* Bottom Bar */}
+        <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-6 lg:gap-6 text-xs sm:text-sm text-gray-400 pt-8 mt-4 border-t border-gray-800">
+          
+          <p className="text-center lg:text-left order-2 lg:order-1">
             © 2026 Ashentrix. All rights reserved worldwide.
           </p>
-          <div className="flex gap-3 sm:gap-4 justify-center lg:justify-start">
+          
+          <div className="flex gap-3 sm:gap-4 justify-center lg:justify-end order-1 lg:order-2 w-full lg:w-auto">
             <a
               href="https://www.linkedin.com/company/ashentrix/"
               className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#280b57] transition-all hover:scale-110"
@@ -471,6 +464,7 @@ export default function Footer() {
               </svg>
             </a>
           </div>
+
         </div>
       </div>
     </footer>
