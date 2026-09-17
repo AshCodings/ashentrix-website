@@ -18,16 +18,6 @@ const jobOpenings = [
   
   {
     id: 1,
-    title: "Customer Support Executive",
-    department: "BPO Operations",
-    location: "Noida, UP (On-site)",
-    type: "Full-Time",
-    experience: "0-2 Years",
-    description: "Seeking excellent communicators to handle international client queries and support.",
-  },
-  
-  {
-    id: 2,
     title: "Sales Executive",
     department: "Sales & Marketing",
     location: "Noida, UP (On-site)",
