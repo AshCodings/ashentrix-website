@@ -114,7 +114,7 @@ export default function ContactSection() {
                     +91-971 117 9821
                   </a>
                    <p className="text-gray-600 text-sm mb-2">
-                    Mon to Fri: 10 AM to 6 PM
+                    Mon to Fri: 10 AM to 8 PM
                     <br />
                     Sat & Sun: Closed
                   </p>
