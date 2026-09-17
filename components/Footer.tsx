@@ -189,7 +189,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/legal/security"
+                  href="/data_security_compliance"
                   className="hover:text-[#9b87f5] transition-colors"
                 >
                   Data Security & Compliance
@@ -197,7 +197,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/data_security_compliance"
+                  href="/legal"
                   className="hover:text-[#9b87f5] transition-colors"
                 >
                   Terms of Service
@@ -205,7 +205,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/legal"
+                  href="/disclaimer"
                   className="hover:text-[#9b87f5] transition-colors"
                 >
                   Disclaimer
