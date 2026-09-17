@@ -232,16 +232,7 @@ export default function ContactForm() {
                       +91-971 117 9821
                     </a>
                   </p>
-                  <p className="text-gray-600">
-                    <a
-                      href="https://wa.me/919711179821"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-[#280b57] transition-colors"
-                    >
-                      WhatsApp: +91-971 117 9821
-                    </a>
-                  </p>
+                 
                 </div>
               </div>
 
