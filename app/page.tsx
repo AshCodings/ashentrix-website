@@ -1,17 +1,23 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
+import dynamic from 'next/dynamic';
+
+
 import HeroSection from "@/components/HeroSection";
-import WhoWeAre from "@/components/WhoWeAre";
-import ValueProposition from "@/components/ValueProposition";
-import ServicesSection from "@/components/ServicesSection";
-import ClientLogosSection from "@/components/ClientLogosSection";
-import CaseStudiesSection from "@/components/CaseStudiesSection";
-import InsightsSection from "@/components/InsightsSection";
-import IndustriesSection from "@/components/IndustriesSection";
-import ProcessSection from "@/components/ProcessSection";
-import ResultsSection from "@/components/ResultsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import LeadershipSection from "@/components/LeadershipSection";
-import ContactSection from "@/components/ContactSection";
+
+
+const ClientLogosSection = dynamic(() => import("@/components/ClientLogosSection"));
+const WhoWeAre = dynamic(() => import("@/components/WhoWeAre"));
+const ValueProposition = dynamic(() => import("@/components/ValueProposition"));
+const ServicesSection = dynamic(() => import("@/components/ServicesSection"));
+const IndustriesSection = dynamic(() => import("@/components/IndustriesSection"));
+const ProcessSection = dynamic(() => import("@/components/ProcessSection"));
+const CaseStudiesSection = dynamic(() => import("@/components/CaseStudiesSection"));
+const ResultsSection = dynamic(() => import("@/components/ResultsSection"));
+const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection"));
+const LeadershipSection = dynamic(() => import("@/components/LeadershipSection"));
+const InsightsSection = dynamic(() => import("@/components/InsightsSection"));
+const ContactSection = dynamic(() => import("@/components/ContactSection"));
+
 export const metadata: Metadata = {
   title: "Ashentrix Solutions - BPO & Outsourcing Services",
   description: "Leading BPO company in Delhi NCR providing customer support, technical support, and back office operations for Insurance, Banking, and Healthcare industries.",
