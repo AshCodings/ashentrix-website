@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { motion, useInView, Variants } from "framer-motion";
 
 interface StatCardProps {
   value: string;
@@ -9,7 +10,6 @@ interface StatCardProps {
   label: string;
   description: string;
   image: string;
-  index: number;
 }
 
 const StatCard = ({
@@ -18,32 +18,16 @@ const StatCard = ({
   label,
   description,
   image,
-  index,
 }: StatCardProps) => {
-  const [isVisible, setIsVisible] = useState(false);
   const [count, setCount] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
+  
+  // Framer Motion's clean hook to replace IntersectionObserver
+  const isInView = useInView(cardRef, { once: true, margin: "-50px" });
   const targetValue = parseInt(value.replace(/[^0-9]/g, ""));
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (isVisible && targetValue) {
+    if (isInView && targetValue) {
       const duration = 2000;
       const steps = 60;
       const increment = targetValue / steps;
@@ -61,35 +45,32 @@ const StatCard = ({
 
       return () => clearInterval(timer);
     }
-  }, [isVisible, targetValue]);
+  }, [isInView, targetValue]);
 
   return (
-    <div
+    <motion.div
       ref={cardRef}
-      className="group relative bg-white  overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-      style={{
-        animation: isVisible
-          ? `fadeInUp 0.6s ease-out ${index * 0.15}s both`
-          : "none",
-      }}
+      whileHover={{ y: -10 }}
+      className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-[0_20px_50px_rgba(40,11,87,0.25)] transition-all duration-500 flex flex-col border border-gray-100"
     >
       {/* Background Image with Overlay */}
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-64 w-full overflow-hidden shrink-0">
         <Image
           src={image}
           alt={label}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className="object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+        {/* Premium Deep Purple Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#280b57]/95 via-black/50 to-transparent" />
 
         {/* Animated Number Overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <div className="text-6xl font-black text-white mb-2 drop-shadow-2xl">
+          <div className="text-center transform group-hover:scale-105 transition-transform duration-500">
+            <div className="text-6xl font-black text-white mb-2 drop-shadow-2xl tracking-tight">
               {suffix === "+" ? `${count.toLocaleString()}+` : `${count}%`}
             </div>
-            <div className="text-white/90 font-semibold text-lg uppercase tracking-wider">
+            <div className="text-purple-200 font-bold text-xs uppercase tracking-widest">
               {label}
             </div>
           </div>
@@ -97,12 +78,12 @@ const StatCard = ({
       </div>
 
       {/* Content */}
-      <div className="p-6 bg-gradient-to-br from-white to-gray-50">
-        <div className="flex items-start gap-4">
+      <div className="p-6 sm:p-8 bg-white flex-grow flex flex-col justify-between relative">
+        <div className="flex items-start gap-5">
           <div className="flex-shrink-0">
-            <div className="w-12 h-12  bg-gradient-to-br from-[#280b57] to-[#1f0944] flex items-center justify-center">
+            <div className="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center group-hover:bg-[#280b57] transition-colors duration-500">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-[#280b57] group-hover:text-white transition-colors duration-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -117,25 +98,24 @@ const StatCard = ({
             </div>
           </div>
           <div className="flex-1">
-            <p className="text-gray-700 leading-relaxed">{description}</p>
+            <p className="text-[#475569] text-sm leading-relaxed font-medium">
+              {description}
+            </p>
           </div>
         </div>
 
-        {/* Bottom Badge */}
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          <span className="inline-flex items-center gap-2 text-xs font-semibold text-[#280b57] uppercase tracking-wider">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
+        {/* Bottom Badge with pulsing dot */}
+        <div className="mt-6 pt-5 border-t border-gray-100">
+          <span className="inline-flex items-center gap-2 text-[11px] font-bold text-[#280b57] uppercase tracking-widest">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#280b57]"></span>
+            </span>
             Verified Result
           </span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -167,93 +147,124 @@ export default function ResultsSection() {
     },
   ];
 
+  // Framer Motion Variants (Typescript fixed)
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <>
-      <style jsx global>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+    <section
+      id="results"
+      className="bg-[#0A0F1C] py-24 relative overflow-hidden"
+    >
+      {/* Deep Space Background Enhancements */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#280b57]/40 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-900/20 blur-[120px] rounded-full pointer-events-none" />
+      
+      {/* Background Dot Pattern */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+      </div>
 
-      <section
-        id="results"
-        className="bg-gradient-to-br from-gray-900 via-[#280b57] to-gray-900 py-24 relative overflow-hidden"
-      >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-              backgroundSize: "40px 40px",
-            }}
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Header */}
-          <div className="text-center mb-12 lg:mb-20">
-            <div className="inline-block mb-4 sm:mb-6">
-              <span className="text-xs sm:text-sm font-bold text-[#280b57] uppercase tracking-wider bg-[#280b57]/20 px-3 sm:px-4 py-2 border border-[#280b57]/30">
-                Impact That Matters
-              </span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
-              Proven Results, Measurable Impact
-            </h2>
-            <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Real transformations delivered to industry leaders across the
-              globe. Our data-driven approach consistently delivers exceptional
-              outcomes.
-            </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Animated Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16 lg:mb-20"
+        >
+          <div className="inline-block mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm font-bold text-purple-200 uppercase tracking-widest bg-white/5 backdrop-blur-md px-5 sm:px-6 py-2 border border-white/10 rounded-full shadow-lg">
+              Impact That Matters
+            </span>
           </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 tracking-tight">
+            Proven Results, Measurable <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-[#8b5cf6]">Impact</span>
+          </h2>
+          <p className="text-base sm:text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Real transformations delivered to industry leaders across the
+            globe. Our data-driven approach consistently delivers exceptional
+            outcomes.
+          </p>
+        </motion.div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 mb-12 lg:mb-16">
-            {stats.map((stat, index) => (
-              <StatCard key={index} {...stat} index={index} />
-            ))}
-          </div>
+        {/* Staggered Stats Grid */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 mb-16 lg:mb-20"
+        >
+          {stats.map((stat, index) => (
+            <motion.div key={index} variants={itemVariants} className="h-full">
+              <StatCard {...stat} />
+            </motion.div>
+          ))}
+        </motion.div>
 
-          {/* Bottom Stats Bar */}
-          <div className="bg-white/5 backdrop-blur-md  border border-white/10 p-8">
-            <div className="grid md:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="text-4xl font-black text-white mb-2">2025</div>
-                <div className="text-gray-400 text-sm uppercase tracking-wider">
-                  Launch Year
-                </div>
-              </div>
-              <div>
-                <div className="text-4xl font-black text-white mb-2">100%</div>
-                <div className="text-gray-400 text-sm uppercase tracking-wider">
-                  Commitment Level
-                </div>
-              </div>
-              <div>
-                <div className="text-4xl font-black text-white mb-2">Fresh</div>
-                <div className="text-gray-400 text-sm uppercase tracking-wider">
-                  Perspective
-                </div>
-              </div>
-              <div>
-                <div className="text-4xl font-black text-white mb-2">24/7</div>
-                <div className="text-gray-400 text-sm uppercase tracking-wider">
-                  Dedication
-                </div>
+        {/* Bottom Stats Bar (Glassmorphism + Premium Rounded) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 lg:p-12 shadow-2xl relative overflow-hidden"
+        >
+          {/* Internal Glow for Bar */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[200px] bg-[#280b57]/40 blur-[80px] pointer-events-none rounded-full" />
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
+            <div>
+              <div className="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tighter">2025</div>
+              <div className="text-purple-300 font-semibold text-xs sm:text-sm uppercase tracking-widest">
+                Launch Year
               </div>
             </div>
+            <div>
+              <div className="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tighter">100%</div>
+              <div className="text-purple-300 font-semibold text-xs sm:text-sm uppercase tracking-widest">
+                Commitment
+              </div>
+            </div>
+            <div>
+              <div className="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tighter">Fresh</div>
+              <div className="text-purple-300 font-semibold text-xs sm:text-sm uppercase tracking-widest">
+                Perspective
+              </div>
+            </div>
+            <div>
+              <div className="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tighter">24/7</div>
+              <div className="text-purple-300 font-semibold text-xs sm:text-sm uppercase tracking-widest">
+                Dedication
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </>
+        </motion.div>
+        
+      </div>
+    </section>
   );
 }
