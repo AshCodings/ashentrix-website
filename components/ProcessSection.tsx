@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 export default function ProcessSection() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
@@ -120,130 +121,200 @@ export default function ProcessSection() {
     },
   ];
 
+  // Framer Motion Variants
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const lineVariants: Variants = {
+    hidden: { scaleX: 0 },
+    visible: { 
+      scaleX: 1, 
+      transition: { duration: 1.5, ease: "easeInOut", delay: 0.3 } 
+    }
+  };
+
   return (
     <section
       id="process"
-      className="bg-gradient-to-br from-gray-50 to-white py-12 sm:py-16 lg:py-24"
+      className="relative bg-[#F8FAFC] py-16 sm:py-20 lg:py-28 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12 lg:mb-20">
+      {/* Subtle Background Glows */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/40 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100/40 blur-[100px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Animated Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16 lg:mb-24"
+        >
           <div className="inline-block mb-4">
-            <span className="text-xs sm:text-sm font-bold text-[#280b57] uppercase tracking-wider bg-[#280b57]/10 px-3 sm:px-4 py-2">
+            <span className="text-xs sm:text-sm font-bold text-[#280b57] uppercase tracking-wider bg-white border border-purple-100 rounded-full px-5 py-2 shadow-sm">
               Our Process
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0F172A] mb-6">
-            How We Drive Your Success
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] mb-6 tracking-tight">
+            How We Drive Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-[#280b57]">Success</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             A proven, systematic approach to transforming your operations and
-            delivering measurable results
+            delivering measurable results.
           </p>
-        </div>
+        </motion.div>
 
         {/* Process Steps */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 relative">
-          {/* Connection Lines - Desktop */}
-          <div
-            className="hidden lg:block absolute top-20 left-0 right-0 h-0.5 bg-gradient-to-r from-[#280b57] via-[#280b57] to-[#280b57] opacity-20"
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative items-start"
+        >
+          {/* Animated Connection Line - Desktop */}
+          <motion.div
+            variants={lineVariants}
+            className="hidden lg:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-purple-200 via-[#280b57]/40 to-purple-200 origin-left"
             style={{ width: "calc(100% - 8rem)", left: "4rem" }}
           />
 
           {steps.map((step, index) => (
-            <div
+            <motion.div
+              variants={itemVariants}
               key={step.number}
-              className="relative"
+              className="relative w-full"
               onMouseEnter={() => setActiveStep(index)}
               onMouseLeave={() => setActiveStep(null)}
+              layout
             >
-              <div
-                className={`bg-white p-4 sm:p-6 lg:p-10 shadow-sm border-2 transition-all duration-300 h-full ${
+              <motion.div
+                layout
+                whileHover={{ y: -8 }}
+                className={`bg-white p-6 lg:p-8 rounded-[2rem] cursor-pointer flex flex-col relative overflow-hidden transition-colors duration-300 ${
                   activeStep === index
-                    ? "border-[#280b57] shadow-md transform -translate-y-1"
-                    : "border-gray-200 hover:border-[#280b57]/50"
+                    ? "border border-purple-300 shadow-[0_20px_50px_rgba(40,11,87,0.12)]"
+                    : "border border-purple-100 shadow-md"
                 }`}
               >
-                {/* Step Number Badge */}
-                <div className="relative mb-6">
+                {/* Background Accent for default state */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-purple-50 to-transparent rounded-bl-full pointer-events-none opacity-60"></div>
+
+                {/* Step Number/Icon Badge */}
+                <motion.div layout className="relative mb-8 z-10">
                   <div
-                    className={`w-16 h-16 flex items-center justify-center text-white text-2xl font-bold transition-all duration-300 ${
+                    className={`w-16 h-16 flex items-center justify-center rounded-2xl transition-all duration-300 ${
                       activeStep === index
-                        ? "bg-[#280b57] shadow-sm"
-                        : step.number % 2 === 0
-                        ? "bg-[#280b57]"
-                        : "bg-[#1f0944]"
+                        ? "bg-gradient-to-br from-[#280b57] to-purple-600 text-white shadow-lg shadow-purple-900/30 scale-110"
+                        : "bg-white border-2 border-purple-100 text-purple-300 shadow-sm"
                     }`}
                   >
-                    {activeStep === index ? step.icon : step.number}
+                    {activeStep === index ? (
+                      <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }}>
+                        {step.icon}
+                      </motion.div>
+                    ) : (
+                      <span className="text-2xl font-black">{`0${step.number}`}</span>
+                    )}
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Content */}
-                <div className="mb-4">
-                  <span className="text-xs font-semibold text-[#280b57] uppercase tracking-wider">
+                <motion.div layout className="mb-4 z-10">
+                  <span className={`text-xs font-extrabold uppercase tracking-widest transition-colors duration-300 ${activeStep === index ? "text-purple-600" : "text-purple-400"}`}>
                     {step.subtitle}
                   </span>
-                  <h3 className="text-xl font-bold text-[#0F172A] mt-2 mb-3">
+                  <h3 className="text-xl font-extrabold text-[#0F172A] mt-2 mb-3 leading-tight">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm text-gray-600 leading-relaxed font-medium">
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
 
-                {/* Details - Show on Hover */}
-                <div
-                  className={`transition-all duration-300 overflow-hidden ${
-                    activeStep === index
-                      ? "max-h-96 opacity-100 mt-6"
-                      : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <div className="pt-4 border-t border-gray-200">
-                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                      Key Activities
-                    </p>
-                    <ul className="space-y-2">
-                      {step.details.map((detail, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-start gap-2 text-sm text-gray-600"
-                        >
-                          <svg
-                            className="w-4 h-4 text-[#280b57] mt-0.5 flex-shrink-0"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+                {/* Details - Show on Hover with Framer Motion AnimatePresence */}
+                <AnimatePresence>
+                  {activeStep === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden z-10"
+                    >
+                      <div className="pt-4 border-t border-purple-100/50">
+                        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">
+                          Key Activities
+                        </p>
+                        <ul className="space-y-2.5">
+                          {step.details.map((detail, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start gap-2.5 text-sm text-gray-700 font-semibold"
+                            >
+                              <svg
+                                className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              {detail}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                {/* Animated Bottom Line for visual weight */}
+                <div className={`absolute bottom-0 left-8 right-8 h-1 rounded-t-full transition-all duration-300 z-10 ${activeStep === index ? "bg-purple-500 opacity-100" : "bg-transparent opacity-0"}`} />
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-600 mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-20 text-center"
+        >
+          <p className="text-gray-600 mb-8 text-lg font-medium">
             Ready to transform your operations with our proven methodology?
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 bg-[#280b57] text-white px-10 py-4 font-semibold hover:bg-[#1f0944] transition-all shadow-sm hover:shadow-md tracking-tight"
+            className="inline-flex items-center gap-2 bg-[#280b57] text-white px-8 py-4 rounded-full font-bold hover:bg-purple-900 transition-all duration-300 shadow-lg shadow-purple-900/20 hover:shadow-xl hover:shadow-purple-900/30 hover:-translate-y-1"
           >
             Start Your Journey
             <svg
-              className="w-5 h-5"
+              className="w-5 h-5 ml-1"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -256,7 +327,7 @@ export default function ProcessSection() {
               />
             </svg>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
