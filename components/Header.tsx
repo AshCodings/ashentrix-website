@@ -25,9 +25,9 @@ export default function Header() {
   };
 
   return (
-    <div className="relative">
-      {/* Light Theme Glassmorphism Header */}
-      <header className="bg-white/85 backdrop-blur-xl border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
+    <div className="sticky top-0 z-50 w-full">
+      {/* Solid White Header (No Transparency) */}
+      <header className="bg-white border-b border-gray-200 transition-all duration-300 relative z-50">
         <div className="max-w-full mx-auto">
           <div className="flex items-center justify-between px-6 py-2">
             {/* Logo Section */}
@@ -846,14 +846,14 @@ export default function Header() {
                         </Link>
                         <Link
                           href="/industries/telecom"
-                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Telecom
                         </Link>
                         <Link
                           href="/industries/finance"
-                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Banking & Finance
@@ -866,7 +866,7 @@ export default function Header() {
                 {/* Services Section */}
                 <div>
                   <button
-                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-gray-50 hover:text-[#280b57] rounded-xl transition-colors"
+                    className="w-full flex items-center justify-between text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-xl transition-colors"
                     onClick={() =>
                       setActiveDropdown(
                         activeDropdown === "services" ? null : "services",
@@ -916,14 +916,14 @@ export default function Header() {
                         </Link>
                         <Link
                           href="/services/back-office"
-                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Back Office Operations
                         </Link>
                         <Link
                           href="/services/data-processing"
-                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Data Processing
@@ -972,21 +972,21 @@ export default function Header() {
                       >
                         <Link
                           href="/careers"
-                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Job Opportunities
                         </Link>
                         <Link
                           href="/careers/culture"
-                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Company Culture
                         </Link>
                         <Link
                           href="/careers/apply"
-                          className="block text-gray-600 text-base py-2.5 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
+                          className="block text-gray-600 text-base py-2.5 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-lg transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Apply Now
@@ -998,7 +998,7 @@ export default function Header() {
 
                 <Link
                   href="/contact"
-                  className="block text-gray-900 text-lg font-semibold py-3 px-4  hover:bg-purple-100 hover:text-[#280b57] rounded-xl transition-colors"
+                  className="block text-gray-900 text-lg font-semibold py-3 px-4 hover:bg-purple-100 hover:text-[#280b57] rounded-xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Contact
