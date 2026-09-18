@@ -132,10 +132,10 @@ export default function ServicesSection() {
             {/* --- FRONT OF CARD --- */}
             <div className="absolute inset-0 w-full h-full [backface-visibility:hidden]">
               <div className="bg-white border border-purple-100 rounded-3xl p-5 sm:p-6 h-full relative overflow-hidden flex flex-col justify-center">
-                <div className="absolute left-0 top-8 bottom-8 w-1.5 bg-gradient-to-b from-[#280b57] to-blue-500 rounded-r-full"></div>
+                <div className="absolute left-0 top-8 bottom-8 w-1.5 bg-gradient-to-b from-[#280b57] to-purple-400 rounded-r-full"></div>
                 <div className="pl-5">
                   <h3 className="text-base sm:text-lg font-bold text-[#0F172A] mb-5 flex items-center gap-3 uppercase tracking-tight">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#280b57] to-blue-500 text-2xl">02</span> 
+                    <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#280b57] to-purple-500 text-2xl">02</span> 
                     PAN-INDIA EDUCATION & ADMISSIONS
                   </h3>
                   <ul className="space-y-3">
@@ -149,7 +149,7 @@ export default function ServicesSection() {
                       "Conversion-focused calling and reporting",
                     ].map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.6)]"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0 shadow-[0_0_8px_rgba(168,85,247,0.6)]"></span>
                         <span className="text-xs sm:text-sm text-gray-600 font-medium leading-snug">
                           {item}
                         </span>
@@ -162,27 +162,27 @@ export default function ServicesSection() {
 
             {/* --- BACK OF CARD (New PPT Data) --- */}
             <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)]">
-              <div className="bg-gradient-to-br from-[#280b57] to-blue-900 border border-blue-800 rounded-3xl p-5 sm:p-6 h-full flex flex-col shadow-xl relative overflow-hidden">
-                <div className="absolute right-0 top-8 bottom-8 w-1.5 bg-blue-400 rounded-l-full"></div>
+              <div className="bg-gradient-to-br from-[#280b57] to-purple-900 border border-purple-700 rounded-3xl p-5 sm:p-6 h-full flex flex-col shadow-xl relative overflow-hidden">
+                <div className="absolute right-0 top-8 bottom-8 w-1.5 bg-purple-400 rounded-l-full"></div>
                 <div className="pr-4 flex-grow flex flex-col">
-                  <p className="text-[11px] sm:text-xs text-blue-100 mb-4 font-medium border-b border-blue-700/50 pb-3">
+                  <p className="text-[11px] sm:text-xs text-purple-100 mb-4 font-medium border-b border-purple-700/50 pb-3">
                     Counselling-led customer engagement across certification, UG
                     and PG programs.
                   </p>
                   <div className="grid grid-cols-2 gap-3 flex-grow overflow-y-auto pr-1">
                     {[
                       { title: "Lead Mgt", desc: "Fresh enquiry, callbacks & priority.", borderColor: "border-l-purple-400" },
-                      { title: "Counselling", desc: "Program, eligibility, fee guidance.", borderColor: "border-l-blue-400" },
+                      { title: "Counselling", desc: "Program, eligibility, fee guidance.", borderColor: "border-l-purple-400" },
                       { title: "Follow-Up", desc: "Structured follow-up journeys.", borderColor: "border-l-purple-400" },
-                      { title: "App Support", desc: "Document verification & admission.", borderColor: "border-l-blue-400" },
+                      { title: "App Support", desc: "Document verification & admission.", borderColor: "border-l-purple-400" },
                       { title: "Univ Co-ord", desc: "Support across tied-up portfolios.", borderColor: "border-l-purple-400" },
-                      { title: "MIS & Quality", desc: "Daily reporting & quality feedback.", borderColor: "border-l-blue-400" },
+                      { title: "MIS & Quality", desc: "Daily reporting & quality feedback.", borderColor: "border-l-purple-400" },
                     ].map((box, idx) => (
                       <div key={idx} className={`bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/5 border-l-4 ${box.borderColor} flex flex-col justify-center hover:bg-white/20 transition-colors`}>
                         <h4 className="font-bold text-[10px] sm:text-xs mb-1 text-white tracking-wider">
                           {box.title}
                         </h4>
-                        <p className="text-[9px] sm:text-[10px] text-blue-100 leading-relaxed">
+                        <p className="text-[9px] sm:text-[10px] text-purple-200 leading-relaxed">
                           {box.desc}
                         </p>
                       </div>
