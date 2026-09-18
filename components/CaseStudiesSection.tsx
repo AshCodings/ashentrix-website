@@ -1,3 +1,9 @@
+"use client";
+
+import Image from "next/image";
+import { motion, Variants } from "framer-motion";
+import { ArrowRight, Briefcase, CheckCircle2 } from "lucide-react";
+
 interface CaseStudy {
   title: string;
   client: string;
@@ -52,83 +58,126 @@ export default function CaseStudiesSection() {
     },
   ];
 
-  return (
-    <section className="bg-[#F8FAFC] py-20">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-semibold text-gray-900 mb-4 tracking-tight">
-            Transformation Blueprints
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Our strategic approach to operational excellence. See the
-            transformation methodologies we&apos;re ready to implement.
-          </p>
-        </div>
+  // Framer Motion Variants for Staggered Grid Animations (TypeScript Error Free)
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <section className="relative bg-[#F8FAFC] py-20 lg:py-28 overflow-hidden">
+      {/* Subtle Background Glow */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-100/40 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Animated Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16 lg:mb-20"
+        >
+          <div className="inline-block mb-4">
+            <span className="text-xs sm:text-sm font-bold text-[#280b57] uppercase tracking-wider bg-purple-50 border border-purple-100 rounded-full px-5 py-2 shadow-sm">
+              Proven Methodologies
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] mb-6 tracking-tight">
+            Transformation <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-[#280b57]">Blueprints</span>
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Our strategic approach to operational excellence. Explore the
+            transformation methodologies we&apos;re ready to implement for your success.
+          </p>
+        </motion.div>
+
+        {/* Animated Staggered Grid */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+        >
           {caseStudies.map((study, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white border border-gray-200 overflow-hidden group hover:shadow-lg transition-all duration-300"
+              variants={cardVariants}
+              whileHover={{ y: -8 }}
+              className="bg-white rounded-[2rem] border border-gray-100 overflow-hidden flex flex-col group hover:shadow-[0_20px_50px_rgba(40,11,87,0.12)] hover:border-purple-200 transition-all duration-500 cursor-pointer"
             >
-              {/* Image Placeholder */}
-              <div className="h-48 bg-gradient-to-br from-[#280b57] to-[#1a0a3e] flex items-center justify-center">
-                <div className="text-white text-center p-6">
-                  <div className="w-16 h-16 bg-white/20 mx-auto mb-4 flex items-center justify-center">
-                    <svg
-                      className="w-8 h-8"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 0a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1V8zm0 4a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1v-2z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-sm font-semibold">{study.industry}</p>
+              {/* Premium Image Area with Zoom & Gradient Overlay */}
+              <div className="relative h-56 w-full overflow-hidden">
+                <Image 
+                  src={study.image} 
+                  alt={study.title}
+                  fill
+                  className="object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                />
+                {/* Deep Purple Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#280b57]/90 via-[#280b57]/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Glassmorphism Industry Badge */}
+                <div className="absolute top-5 left-5 bg-white/20 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 flex items-center gap-2">
+                  <Briefcase className="w-3.5 h-3.5 text-white" />
+                  <p className="text-[10px] sm:text-xs font-bold text-white tracking-widest uppercase">
+                    {study.industry}
+                  </p>
                 </div>
               </div>
 
-              <div className="p-6">
-                <div className="mb-4">
-                  <span className="text-xs font-semibold text-[#280b57] uppercase tracking-wide">
+              {/* Card Content Area */}
+              <div className="p-6 sm:p-8 flex-grow flex flex-col bg-white relative">
+                <div className="mb-6">
+                  <span className="text-xs font-bold text-purple-500 uppercase tracking-widest mb-2 block">
                     Case Study
                   </span>
-                  <h3 className="text-xl font-semibold text-gray-900 mt-1 mb-2">
+                  <h3 className="text-xl font-extrabold text-[#0F172A] leading-tight mb-2 group-hover:text-[#280b57] transition-colors">
                     {study.title}
                   </h3>
-                  <p className="text-gray-600 font-medium">{study.client}</p>
+                  <p className="text-sm font-semibold text-gray-500">{study.client}</p>
                 </div>
 
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-700 mb-1">
+                <div className="space-y-5 flex-grow">
+                  <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">
                       Challenge
                     </h4>
-                    <p className="text-sm text-gray-600">{study.challenge}</p>
+                    <p className="text-sm text-gray-700 font-medium leading-relaxed">{study.challenge}</p>
                   </div>
 
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-700 mb-1">
+                  <div className="bg-purple-50 p-4 rounded-2xl border border-purple-100">
+                    <h4 className="text-xs font-bold text-purple-400 uppercase tracking-wider mb-1.5">
                       Solution
                     </h4>
-                    <p className="text-sm text-gray-600">{study.solution}</p>
+                    <p className="text-sm text-[#280b57] font-semibold leading-relaxed">{study.solution}</p>
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
                       Key Results
                     </h4>
-                    <div className="space-y-1">
+                    <div className="space-y-2.5">
                       {study.results.map((result, resultIndex) => (
-                        <div
-                          key={resultIndex}
-                          className="flex items-center gap-2"
-                        >
-                          <div className="w-1.5 h-1.5 bg-[#280b57]"></div>
-                          <span className="text-sm font-medium text-gray-800">
+                        <div key={resultIndex} className="flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                          <span className="text-sm font-medium text-gray-600 leading-snug">
                             {result}
                           </span>
                         </div>
@@ -137,21 +186,32 @@ export default function CaseStudiesSection() {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-gray-100">
-                  <button className="text-[#280b57] font-semibold text-sm hover:text-[#280b57]/80 transition-colors">
-                    Read Full Case Study →
-                  </button>
+                {/* Animated Footer Link */}
+                <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+                  <span className="text-[#280b57] font-bold text-sm group-hover:text-purple-600 transition-colors">
+                    Read Full Case Study
+                  </span>
+                  <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center group-hover:bg-[#280b57] group-hover:text-white text-[#280b57] transition-all duration-300 transform group-hover:translate-x-1">
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="text-center mt-12">
-          <button className="bg-[#280b57] text-white px-8 py-3 font-semibold hover:bg-[#280b57]/90 transition-colors">
+        {/* Bottom CTA Button */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center mt-16"
+        >
+          <button className="bg-[#280b57] text-white px-10 py-4 rounded-full font-bold hover:bg-purple-900 shadow-lg shadow-purple-900/20 hover:shadow-xl hover:shadow-purple-900/30 hover:-translate-y-1 transition-all duration-300">
             View All Case Studies
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
