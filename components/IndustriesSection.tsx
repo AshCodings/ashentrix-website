@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, Variants } from "framer-motion";
 
 interface IndustryCardProps {
   title: string;
@@ -14,13 +15,14 @@ const IndustryCard = ({ title, image, href }: IndustryCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Link href={href} className="block">
-      <div
-        className="relative overflow-hidden  cursor-pointer group h-96"
+    <Link href={href} className="block w-full h-full">
+      <motion.div
+        whileHover={{ y: -8 }}
+        className="relative overflow-hidden cursor-pointer group h-[22rem] rounded-2xl shadow-lg"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Background Image */}
+        {/* Background Image with Smooth Scale */}
         <div
           className="absolute inset-0 transition-transform duration-700 ease-out"
           style={{
@@ -32,142 +34,115 @@ const IndustryCard = ({ title, image, href }: IndustryCardProps) => {
             alt={title}
             fill
             className="object-cover"
-            style={{ filter: "brightness(0.5)" }}
+            style={{ filter: "brightness(0.6)" }}
           />
         </div>
 
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+        {/* Premium Dark Purple Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#280b57]/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
 
         {/* Content */}
-        <div className="relative h-full flex items-center justify-center p-4 sm:p-6 lg:p-8">
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight text-center">
+        <div className="relative h-full flex items-end justify-center p-6 lg:p-8 pb-10">
+          <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight text-center translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
             {title}
+            {/* Animated Underline */}
+            <span className="block h-1 w-0 bg-purple-400 mt-3 mx-auto group-hover:w-12 transition-all duration-500 ease-out rounded-full" />
           </h3>
         </div>
 
-        {/* Animated Border */}
-        <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/30 transition-all duration-300 " />
-      </div>
+        {/* Animated Glowing Border */}
+        <div className="absolute inset-0 border-[3px] border-white/0 group-hover:border-purple-400/50 transition-all duration-500 rounded-2xl pointer-events-none" />
+      </motion.div>
     </Link>
   );
 };
 
 export default function IndustriesSection() {
   const industries: IndustryCardProps[] = [
-    {
-      title: "Social Platforms",
-      image: "/images/industries/social-platforms.jpg",
-      href: "/industries/social-platforms",
-    },
-    {
-      title: "Real Estate",
-      image: "/images/industries/real-estate.jpg",
-      href: "/industries/real-estate",
-    },
-    {
-      title: "Media & Communications",
-      image: "/images/industries/media-communications.jpg",
-      href: "/industries/media-communications",
-    },
-    {
-      title: "Logistics & Supply Chain",
-      image: "/images/industries/logistics-supply-chain.jpg",
-      href: "/industries/logistics-supply-chain",
-    },
-    {
-      title: "Hardware & IoT",
-      image: "/images/industries/hardware-iot.jpg",
-      href: "/industries/hardware-iot",
-    },
-    {
-      title: "Govt. & Public Sector",
-      image: "/images/industries/govt-public-sector.jpg",
-      href: "/industries/govt-public-sector",
-    },
-    {
-      title: "Energy & Utility",
-      image: "/images/industries/energy-utility.jpg",
-      href: "/industries/energy-utility",
-    },
-    {
-      title: "Education",
-      image: "/images/industries/education.jpg",
-      href: "/industries/education",
-    },
-    {
-      title: "Insurance",
-      image: "/images/industries/insurance.jpg",
-      href: "/industries/insurance",
-    },
-    {
-      title: "Telecom",
-      image: "/images/industries/telecom.jpg",
-      href: "/industries/telecom",
-    },
-    {
-      title: "Healthcare",
-      image: "/images/industries/healthcare.jpg",
-      href: "/industries/healthcare",
-    },
-    {
-      title: "E-commerce & Retail",
-      image: "/images/industries/ecommerce.jpg",
-      href: "/industries/ecommerce",
-    },
-    {
-      title: "Banking & Finance",
-      image: "/images/industries/bank.jpg",
-      href: "/industries/finance",
-    },
-    {
-      title: "IT & Software Development",
-      image: "/images/industries/it.jpg",
-      href: "/industries/it-hardware",
-    },
-    {
-      title: "Travel & Hospitality",
-      image: "/images/industries/hospitality.jpg",
-      href: "/industries/travel",
-    },
-    {
-      title: "Automobiles",
-      image: "/images/industries/automobile.jpg",
-      href: "/industries/logistics",
-    },
+    { title: "Social Platforms", image: "/images/industries/social-platforms.jpg", href: "/industries/social-platforms" },
+    { title: "Real Estate", image: "/images/industries/real-estate.jpg", href: "/industries/real-estate" },
+    { title: "Media & Communications", image: "/images/industries/media-communications.jpg", href: "/industries/media-communications" },
+    { title: "Logistics & Supply Chain", image: "/images/industries/logistics-supply-chain.jpg", href: "/industries/logistics-supply-chain" },
+    { title: "Hardware & IoT", image: "/images/industries/hardware-iot.jpg", href: "/industries/hardware-iot" },
+    { title: "Govt. & Public Sector", image: "/images/industries/govt-public-sector.jpg", href: "/industries/govt-public-sector" },
+    { title: "Energy & Utility", image: "/images/industries/energy-utility.jpg", href: "/industries/energy-utility" },
+    { title: "Education", image: "/images/industries/education.jpg", href: "/industries/education" },
+    { title: "Insurance", image: "/images/industries/insurance.jpg", href: "/industries/insurance" },
+    { title: "Telecom", image: "/images/industries/telecom.jpg", href: "/industries/telecom" },
+    { title: "Healthcare", image: "/images/industries/healthcare.jpg", href: "/industries/healthcare" },
+    { title: "E-commerce & Retail", image: "/images/industries/ecommerce.jpg", href: "/industries/ecommerce" },
+    { title: "Banking & Finance", image: "/images/industries/bank.jpg", href: "/industries/finance" },
+    { title: "IT & Software Development", image: "/images/industries/it.jpg", href: "/industries/it-hardware" },
+    { title: "Travel & Hospitality", image: "/images/industries/hospitality.jpg", href: "/industries/travel" },
+    { title: "Automobiles", image: "/images/industries/automobile.jpg", href: "/industries/logistics" },
   ];
 
+  // Framer Motion Variants for Staggered Grid Entry (TypeScript fix applied here)
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section
-      id="industries"
-      className="bg-[#1E293B] text-white py-12 sm:py-16 lg:py-20"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
-            Industries We Serve
+    <section id="industries" className="relative bg-[#0A0F1C] text-white py-20 lg:py-28 overflow-hidden">
+      
+      {/* Background Ambient Glows */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#280b57]/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-purple-900/10 blur-[150px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Animated Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16 lg:mb-20"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight">
+            Industries We <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-[#280b57]">Serve</span>
           </h2>
-          <p className="text-lg text-gray-300">
+          <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Ashentrix Solutions partners with a wide range of industries,
             helping them streamline operations and enhance customer experience
             through customized outsourcing solutions.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Industry Cards Grid - Centered Layout */}
-        <div className="flex justify-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl">
-            {industries.map((industry, index) => (
-              <div key={index} className="w-full max-w-64 mx-auto">
-                <IndustryCard
-                  title={industry.title}
-                  image={industry.image}
-                  href={industry.href}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Animated Staggered Grid */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
+        >
+          {industries.map((industry, index) => (
+            <motion.div key={index} variants={cardVariants} className="w-full">
+              <IndustryCard
+                title={industry.title}
+                image={industry.image}
+                href={industry.href}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+
       </div>
     </section>
   );
