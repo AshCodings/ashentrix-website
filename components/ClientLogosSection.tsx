@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { motion, Variants } from "framer-motion";
 import {
   Shield,
   Heart,
@@ -12,143 +14,144 @@ import {
   Computer,
   Building,
   GraduationCap,
-  Landmark
+  Landmark,
+  ShieldCheck,
+  CheckCircle2,
+  TrendingUp
 } from "lucide-react";
 
 export default function ClientLogosSection() {
   const industries = [
-    { name: "Insurance Partnership", icon: Shield, industry: "Insurance" },
-    { name: "Healthcare Solutions", icon: Heart, industry: "Healthcare" },
-    { name: "Telecom Services", icon: Radio, industry: "Telecom" },
-    { name: "E-commerce Growth", icon: ShoppingCart, industry: "E-commerce" },
-    {
-      name: "Finance & Accounting",
-      icon: DollarSign,
-      industry: "Finance & Accounting",
-    },
-    {
-      name: "Logistics & Supply Chain",
-      icon: Truck,
-      industry: "Logistics & Supply Chain",
-    },
-    {
-      name: "Travel & Hospitality",
-      icon: Plane,
-      industry: "Travel, Hospitality & Cargo",
-    },
-    {
-      name: "Entertainment & Social",
-      icon: Film, 
-      industry: "Entertainment & Social Platforms",
-    },
-    {
-      name: "IT, Hardware & IoT",
-      icon: Computer,
-      industry: "IT, Hardware & IoT",
-    },
-    // New Industries Added Below
-    {
-      name: "Real Estate & Property",
-      icon: Building,
-      industry: "Real Estate",
-    },
-    {
-      name: "Education & EdTech",
-      icon: GraduationCap,
-      industry: "Education & EdTech",
-    },
-    {
-      name: "Govt. & Public Sector",
-      icon: Landmark,
-      industry: "Govt. & Public Sector",
-    },
+    { name: "Insurance Partnership", icon: Shield, industry: "Insurance", href: "/industries/insurance" },
+    { name: "Healthcare Solutions", icon: Heart, industry: "Healthcare", href: "/industries/healthcare" },
+    { name: "Telecom Services", icon: Radio, industry: "Telecom", href: "/industries/telecom" },
+    { name: "E-commerce Growth", icon: ShoppingCart, industry: "E-commerce", href: "/industries/ecommerce" },
+    { name: "Finance & Accounting", icon: DollarSign, industry: "Finance & Accounting", href: "/industries/finance" },
+    { name: "Logistics & Supply Chain", icon: Truck, industry: "Logistics & Supply Chain", href: "/industries/logistics-supply-chain" },
+    { name: "Travel & Hospitality", icon: Plane, industry: "Travel, Hospitality & Cargo", href: "/industries/travel" },
+    { name: "Entertainment & Social", icon: Film, industry: "Entertainment & Social Platforms", href: "/industries/social-platforms" },
+    { name: "IT, Hardware & IoT", icon: Computer, industry: "IT, Hardware & IoT", href: "/industries/hardware-iot" },
+    { name: "Real Estate & Property", icon: Building, industry: "Real Estate", href: "/industries/real-estate" },
+    { name: "Education & EdTech", icon: GraduationCap, industry: "Education & EdTech", href: "/industries/education" },
+    { name: "Govt. & Public Sector", icon: Landmark, industry: "Govt. & Public Sector", href: "/industries/govt-public-sector" },
   ];
 
+  // Framer Motion Variants for Smooth Staggered Animations (Error-Free)
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="relative overflow-hidden py-16 border-t border-gray-100">
-      {/* 1. Blurred Background Image */}
+    <section className="relative overflow-hidden py-20 lg:py-28 bg-[#F8FAFC]">
+      {/* Subtle Background Glows & Image Overlay (Adjusted for better visibility) */}
       <div
-        className="absolute inset-0 bg-cover bg-center scale-105"
-        style={{
-          backgroundImage: "url('/growing-image.png')", 
-        }}
+        className="absolute inset-0 bg-cover bg-center opacity-50 pointer-events-none"
+        style={{ backgroundImage: "url('/growing-image.png')" }}
       />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/50 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100/50 blur-[100px] rounded-full pointer-events-none" />
+      
+      {/* Light Overlay to ensure text readability while keeping image visible */}
+      <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
 
-      {/* 2. White Overlay for Readability */}
-      <div className="absolute inset-0 bg-white/70" />
-
-      {/* 3. Main Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
-            Ready for New Partnerships
-          </h2>
-          <p className="text-gray-700 max-w-2xl mx-auto font-medium">
-            We&apos;re excited to partner with forward-thinking organizations
-            across industries to drive operational excellence and sustainable
-            growth
-          </p>
-        </div>
-
-        {/* Changed grid-cols to 6 for Desktop so 12 items fit perfectly in 2 rows */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-          {industries.map((industry, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center group cursor-pointer"
-            >
-              <div className="w-16 h-16 bg-white/90 shadow-sm border border-gray-200 flex items-center justify-center mb-3 group-hover:from-[#280b57]/10 group-hover:to-[#280b57]/20 group-hover:border-[#280b57]/40 group-hover:shadow-md transition-all duration-300 rounded-xl backdrop-blur-sm">
-                <industry.icon
-                  size={24}
-                  className="text-gray-700 group-hover:text-[#280b57] group-hover:scale-110 transition-all duration-300"
-                />
-              </div>
-              <p className="text-xs text-gray-700 text-center font-semibold leading-tight px-2">
-                {industry.industry}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-14">
-          <p className="text-gray-600 text-sm mb-4 font-medium">
-            Target industries for partnerships — Building our client base
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-4 text-xs text-gray-600 font-medium">
-            <span className="flex items-center gap-1">
-              <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Compliance Ready
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1">
-              <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Security Focused
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1">
-              <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Growth Oriented
+      {/* Main Content Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Animated Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16 lg:mb-20"
+        >
+          <div className="inline-block mb-4">
+            <span className="text-xs sm:text-sm font-bold text-[#280b57] uppercase tracking-wider bg-white/80 backdrop-blur-md border border-purple-100 rounded-full px-5 py-2 shadow-sm">
+              Global Scale
             </span>
           </div>
-        </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] mb-6 tracking-tight">
+            Ready for New <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-[#280b57]">Partnerships</span>
+          </h2>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium bg-white/30 backdrop-blur-sm p-2 rounded-xl inline-block">
+            We&apos;re excited to partner with forward-thinking organizations
+            across industries to drive operational excellence and sustainable
+            growth.
+          </p>
+        </motion.div>
+
+        {/* Animated Staggered Grid for Industries */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 items-start"
+        >
+          {industries.map((industry, index) => (
+            <motion.div key={index} variants={itemVariants} className="h-full">
+              <Link 
+                href={industry.href} 
+                className="flex flex-col items-center group cursor-pointer h-full"
+              >
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 backdrop-blur-md shadow-sm border border-purple-50 flex items-center justify-center mb-4 group-hover:bg-[#280b57] group-hover:border-[#280b57] group-hover:shadow-[0_15px_30px_rgba(40,11,87,0.2)] transition-all duration-300 rounded-[1.25rem] transform group-hover:-translate-y-2">
+                  <industry.icon
+                    strokeWidth={1.5}
+                    className="w-8 h-8 text-[#280b57] group-hover:text-white group-hover:scale-110 transition-all duration-300"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm text-[#0F172A] text-center font-bold leading-snug px-2 group-hover:text-[#280b57] transition-colors duration-300">
+                  {industry.industry}
+                </p>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Animated Bottom Trust Badges */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center mt-20 pt-10 border-t border-purple-200/40"
+        >
+          <p className="text-[#280b57] text-xs sm:text-sm font-extrabold uppercase tracking-widest mb-6">
+            Building Our Client Base With Trust
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-sm font-semibold text-gray-800">
+            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-full shadow-sm border border-purple-50">
+              <ShieldCheck className="w-5 h-5 text-green-600" />
+              <span>Compliance Ready</span>
+            </div>
+            <div className="hidden sm:block text-[#280b57]/30 font-bold">•</div>
+            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-full shadow-sm border border-purple-50">
+              <CheckCircle2 className="w-5 h-5 text-green-600" />
+              <span>Security Focused</span>
+            </div>
+            <div className="hidden sm:block text-[#280b57]/30 font-bold">•</div>
+            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-full shadow-sm border border-purple-50">
+              <TrendingUp className="w-5 h-5 text-green-600" />
+              <span>Growth Oriented</span>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
