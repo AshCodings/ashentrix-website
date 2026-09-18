@@ -622,7 +622,7 @@ export default function Header() {
                         Life at Ashentrix
                       </Link>
                       <Link
-                        href="/careers/current-openings"
+                        href="/career-opportunities"
                         className="block text-gray-600 hover:text-[#280b57]  hover:bg-purple-100 px-3 py-2 rounded-lg transition-all"
                         onClick={() => setActiveDropdown(null)}
                       >
@@ -667,7 +667,7 @@ export default function Header() {
                       business process outsourcing from Delhi NCR.
                     </p>
                     <Link
-                      href="/careers/apply"
+                      href="/career-opportunities"
                       onClick={() => setActiveDropdown(null)}
                       className="inline-block bg-[#280b57] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-purple-900 transition-colors shadow-md shadow-purple-900/20"
                     >
