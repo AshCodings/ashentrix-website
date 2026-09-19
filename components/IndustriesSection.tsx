@@ -59,22 +59,22 @@ const IndustryCard = ({ title, image, href }: IndustryCardProps) => {
 
 export default function IndustriesSection() {
   const industries: IndustryCardProps[] = [
-    { title: "Social Platforms", image: "/images/industries/social-platforms.jpg", href: "/industries/social-platforms" },
-    { title: "Real Estate", image: "/images/industries/real-estate.jpg", href: "/industries/real-estate" },
-    { title: "Media & Communications", image: "/images/industries/media-communications.jpg", href: "/industries/media-communications" },
-    { title: "Logistics & Supply Chain", image: "/images/industries/logistics-supply-chain.jpg", href: "/industries/logistics-supply-chain" },
-    { title: "Hardware & IoT", image: "/images/industries/hardware-iot.jpg", href: "/industries/hardware-iot" },
-    { title: "Govt. & Public Sector", image: "/images/industries/govt-public-sector.jpg", href: "/industries/govt-public-sector" },
-    { title: "Energy & Utility", image: "/images/industries/energy-utility.jpg", href: "/industries/energy-utility" },
-    { title: "Education", image: "/images/industries/education.jpg", href: "/industries/education" },
-    { title: "Insurance", image: "/images/industries/insurance.jpg", href: "/industries/insurance" },
-    { title: "Telecom", image: "/images/industries/telecom.jpg", href: "/industries/telecom" },
-    { title: "Healthcare", image: "/images/industries/healthcare.jpg", href: "/industries/healthcare" },
-    { title: "E-commerce & Retail", image: "/images/industries/ecommerce.jpg", href: "/industries/ecommerce" },
-    { title: "Banking & Finance", image: "/images/industries/bank.jpg", href: "/industries/finance" },
-    { title: "IT & Software Development", image: "/images/industries/it.jpg", href: "/industries/it-hardware" },
-    { title: "Travel & Hospitality", image: "/images/industries/hospitality.jpg", href: "/industries/travel" },
-    { title: "Automobiles", image: "/images/industries/automobile.jpg", href: "/industries/logistics" },
+    { title: "Social Platforms", image: "/images/industries/social-platforms.webp", href: "/industries/social-platforms" },
+    { title: "Real Estate", image: "/images/industries/real-estate.webp", href: "/industries/real-estate" },
+    { title: "Media & Communications", image: "/images/industries/media-communications.webp", href: "/industries/media-communications" },
+    { title: "Logistics & Supply Chain", image: "/images/industries/logistics-supply-chain.webp", href: "/industries/logistics-supply-chain" },
+    { title: "Hardware & IoT", image: "/images/industries/hardware-iot.webp", href: "/industries/hardware-iot" },
+    { title: "Govt. & Public Sector", image: "/images/industries/govt-public-sector.webp", href: "/industries/govt-public-sector" },
+    { title: "Energy & Utility", image: "/images/industries/energy-utility.webp", href: "/industries/energy-utility" },
+    { title: "Education", image: "/images/industries/education.webp", href: "/industries/education" },
+    { title: "Insurance", image: "/images/industries/insurance.webp", href: "/industries/insurance" },
+    { title: "Telecom", image: "/images/industries/telecom.webp", href: "/industries/telecom" },
+    { title: "Healthcare", image: "/images/industries/healthcare.webp", href: "/industries/healthcare" },
+    { title: "E-commerce & Retail", image: "/images/industries/ecommerce.webp", href: "/industries/ecommerce" },
+    { title: "Banking & Finance", image: "/images/industries/bank.webp", href: "/industries/finance" },
+    { title: "IT & Software Development", image: "/images/industries/it.webp", href: "/industries/it-hardware" },
+    { title: "Travel & Hospitality", image: "/images/industries/hospitality.webp", href: "/industries/travel" },
+    { title: "Automobiles", image: "/images/industries/automobile.webp", href: "/industries/logistics" },
   ];
 
   // Framer Motion Variants for Staggered Grid Entry (TypeScript fix applied here)
