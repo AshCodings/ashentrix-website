@@ -61,7 +61,7 @@ export default function ClientLogosSection() {
       {/* Subtle Background Glows & Image Overlay (Adjusted for better visibility) */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-50 pointer-events-none"
-        style={{ backgroundImage: "url('/growing-image.png')" }}
+        style={{ backgroundImage: "url('/growing-image.webp')" }}
       />
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/50 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100/50 blur-[100px] rounded-full pointer-events-none" />
