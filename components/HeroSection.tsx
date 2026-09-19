@@ -1,15 +1,34 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
+
+// Variants ko component ke bahar rakha hai taaki har render par wapas create na hon (Performance Boost)
+const punchline = "Powered by People. Driven by Technology. Built for Global Scale.";
+
+const typewriterContainerVariants: Variants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.8,
+      staggerChildren: 5 / punchline.length,
+    },
+  },
+};
+
+const letterVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.1 } },
+};
 
 export default function HeroSection() {
-  const punchline = "Powered by People. Driven by Technology. Built for Global Scale.";
-
   return (
     <section className="relative min-h-screen flex items-center bg-[#f8fafc] overflow-hidden">
       
-      {/* 1. Animated Mesh Gradient Orbs (Smooth Floating Effect) */}
+      {/* 1. Animated Mesh Gradient Orbs 
+          [OPTIMIZATION]: 'will-change-transform' lagaya gaya hai aur mobile par heavy blurs ko hide kiya hai 'hidden md:block' se taaki mobile hang na ho. GPU rendering force ki gayi hai. 
+      */}
       <motion.div
         animate={{ 
           x: [0, 50, 0, -50, 0], 
@@ -17,7 +36,7 @@ export default function HeroSection() {
           scale: [1, 1.1, 1, 1.05, 1]
         }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-purple-300/40 blur-[120px] pointer-events-none"
+        className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-purple-300/40 blur-[120px] pointer-events-none will-change-transform hidden md:block"
       />
       <motion.div
         animate={{ 
@@ -26,15 +45,17 @@ export default function HeroSection() {
           scale: [1, 1.2, 1, 1.1, 1]
         }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-300/30 blur-[120px] pointer-events-none"
+        className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-300/30 blur-[120px] pointer-events-none will-change-transform hidden md:block"
       />
+      
+      {/* Ek orb mobile ke liye rakha gaya hai taaki design kharab na ho */}
       <motion.div
         animate={{ 
           x: [0, 30, -30, 0], 
           y: [0, 30, -30, 0] 
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-[#280b57]/10 blur-[150px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-[#280b57]/10 blur-[150px] pointer-events-none will-change-transform"
       />
 
       {/* 2. Subtle Tech Grid Overlay */}
@@ -53,6 +74,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
+              className="will-change-transform will-change-opacity"
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#0F172A] leading-[1.1] mb-6 tracking-tight">
                 Transforming Operations.
@@ -71,47 +93,36 @@ export default function HeroSection() {
               </p>
             </motion.div>
 
-            {/* Typewriter Effect Punchline (5 seconds duration) */}
+            {/* Typewriter Effect Punchline */}
             <motion.p 
-              className="text-[#280b57] font-bold text-lg sm:text-xl mb-10 tracking-wide"
+              className="text-[#280b57] font-bold text-lg sm:text-xl mb-10 tracking-wide will-change-opacity"
               initial="hidden"
               animate="visible"
-              variants={{
-                hidden: { opacity: 1 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    delayChildren: 0.8,
-                    staggerChildren: 5 / punchline.length, 
-                  },
-                },
-              }}
+              variants={typewriterContainerVariants}
             >
               {punchline.split("").map((char, index) => (
                 <motion.span
                   key={index}
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 },
-                  }}
+                  variants={letterVariants}
+                  className="will-change-opacity"
                 >
                   {char}
                 </motion.span>
               ))}
             </motion.p>
 
-            {/* Modern Pill-Shaped Buttons with Motion Hover */}
+            {/* Modern Pill-Shaped Buttons */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 will-change-opacity"
             >
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#280b57] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#1a063b] transition-colors duration-300 shadow-lg shadow-purple-900/20 text-center relative overflow-hidden group"
+                className="bg-[#280b57] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#1a063b] transition-colors duration-300 shadow-lg shadow-purple-900/20 text-center relative overflow-hidden group will-change-transform"
               >
                 <span className="relative z-10">Get Started</span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
@@ -120,7 +131,7 @@ export default function HeroSection() {
                 href="#services"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white/80 backdrop-blur-md border border-gray-200 text-[#0F172A] px-8 py-4 rounded-full font-semibold hover:border-[#280b57] hover:bg-white transition-colors duration-300 shadow-sm text-center"
+                className="bg-white/80 backdrop-blur-md border border-gray-200 text-[#0F172A] px-8 py-4 rounded-full font-semibold hover:border-[#280b57] hover:bg-white transition-colors duration-300 shadow-sm text-center will-change-transform"
               >
                 Explore Services
               </motion.a>
@@ -132,13 +143,15 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="relative rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50 md:-translate-y-8 lg:-translate-y-12 group border border-white/50"
+            className="relative rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50 md:-translate-y-8 lg:-translate-y-12 group border border-white/50 will-change-transform will-change-opacity"
           >
+            {/* [OPTIMIZATION]: sizes prop add kiya hai taaki browser device screen ke hisaab se image load kare */}
             <Image
               src="/images/home.webp"
               alt="Business Operations"
               width={800}
               height={600}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
               priority
             />
