@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
@@ -11,31 +11,32 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleMouseEnter = (dropdownName: string) => {
+  // useCallback se functions memoize kiye hain taaki unnecessary re-renders na hon
+  const handleMouseEnter = useCallback((dropdownName: string) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
     setActiveDropdown(dropdownName);
-  };
+  }, []);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     timeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
     }, 200);
-  };
+  }, []);
 
-  // Framer Motion Variants for Type-Safe Animations
+  // Hardware acceleration ke liye transition properties optimized ki hain
   const megaMenuVariants: Variants = {
-    hidden: { opacity: 0, y: -15 },
+    hidden: { opacity: 0, y: -10 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.3, ease: "easeOut" } 
+      transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] } // Custom cubic-bezier for smoother feel
     },
     exit: { 
       opacity: 0, 
-      y: -10, 
-      transition: { duration: 0.2, ease: "easeIn" } 
+      y: -5, 
+      transition: { duration: 0.15, ease: "easeIn" } 
     }
   };
 
@@ -43,11 +44,11 @@ export default function Header() {
     hidden: { x: "100%" },
     visible: { 
       x: 0, 
-      transition: { type: "spring", damping: 25, stiffness: 200 } 
+      transition: { type: "spring", damping: 25, stiffness: 200, mass: 0.8 } // Mass kam kiya smooth spring ke liye
     },
     exit: { 
       x: "100%", 
-      transition: { type: "spring", damping: 25, stiffness: 200 } 
+      transition: { type: "spring", damping: 25, stiffness: 200, mass: 0.8 } 
     }
   };
 
@@ -56,7 +57,7 @@ export default function Header() {
     visible: { 
       height: "auto", 
       opacity: 1,
-      transition: { duration: 0.3, ease: "easeInOut" }
+      transition: { duration: 0.25, ease: "easeInOut" }
     },
     exit: { 
       height: 0, 
@@ -67,7 +68,6 @@ export default function Header() {
 
   return (
     <div className="sticky top-0 z-50 w-full">
-      {/* Solid White Header with Premium Shadow */}
       <header className="bg-white border-b border-gray-100 shadow-sm transition-all duration-300 relative z-50">
         <div className="max-w-full mx-auto">
           <div className="flex items-center justify-between px-6 py-2">
@@ -77,12 +77,14 @@ export default function Header() {
               <Link
                 href="/"
                 className="group relative flex items-center justify-start h-12 w-[150px] overflow-hidden"
+                prefetch={false}
               >
                 <Image
                   src="/logo-only.jpeg"
                   alt="Ashentrix Solutions Logo"
                   width={180}
                   height={60}
+                  sizes="150px"
                   className="h-12 w-auto object-contain object-left transition-all duration-500 ease-in-out group-hover:scale-50 group-hover:opacity-0"
                   priority
                 />
@@ -92,109 +94,55 @@ export default function Header() {
                   alt="Ashentrix Solutions Hover Logo"
                   width={180}
                   height={60}
+                  sizes="150px"
                   className="absolute inset-0 h-12 w-full object-contain object-left opacity-0 translate-y-full transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:opacity-100"
+                  loading="lazy"
                 />
               </Link>
             </div>
 
-            {/* Main Navigation - Premium Hover Pills */}
+            {/* Main Navigation */}
             <nav className="hidden lg:flex items-center gap-1.5 text-sm font-semibold">
-              {/* About */}
-              <div
-                className="relative"
-                onMouseEnter={() => handleMouseEnter("about")}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button className={`rounded-full transition-all duration-300 px-5 py-2.5 flex items-center gap-2 ${activeDropdown === "about" ? "bg-[#280b57] text-white shadow-md shadow-purple-900/20" : "text-gray-600 hover:text-white hover:bg-[#280b57] hover:shadow-md hover:shadow-purple-900/20"}`}>
-                  About
-                  <svg
-                    className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                      activeDropdown === "about" ? "rotate-180 text-white" : "text-gray-400 group-hover:text-white"
-                    }`}
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-              </div>
+              {['about', 'industries', 'solutions', 'careers'].map((navItem) => (
+                <div
+                  key={navItem}
+                  className="relative"
+                  onMouseEnter={() => handleMouseEnter(navItem)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <button className={`rounded-full transition-all duration-300 px-5 py-2.5 flex items-center gap-2 ${activeDropdown === navItem ? "bg-[#280b57] text-white shadow-md shadow-purple-900/20" : "text-gray-600 hover:text-white hover:bg-[#280b57] hover:shadow-md hover:shadow-purple-900/20"}`}>
+                    {navItem.charAt(0).toUpperCase() + navItem.slice(1).replace('Solutions', 'Services')}
+                    <svg
+                      className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                        activeDropdown === navItem ? "rotate-180 text-white" : "text-gray-400 group-hover:text-white"
+                      }`}
+                      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+              ))}
 
-              {/* Industries */}
-              <div
-                className="relative"
-                onMouseEnter={() => handleMouseEnter("industries")}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button className={`rounded-full transition-all duration-300 px-5 py-2.5 flex items-center gap-2 ${activeDropdown === "industries" ? "bg-[#280b57] text-white shadow-md shadow-purple-900/20" : "text-gray-600 hover:text-white hover:bg-[#280b57] hover:shadow-md hover:shadow-purple-900/20"}`}>
-                  Industries
-                  <svg
-                    className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                      activeDropdown === "industries" ? "rotate-180 text-white" : "text-gray-400 group-hover:text-white"
-                    }`}
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Services */}
-              <div
-                className="relative"
-                onMouseEnter={() => handleMouseEnter("solutions")}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button className={`rounded-full transition-all duration-300 px-5 py-2.5 flex items-center gap-2 ${activeDropdown === "solutions" ? "bg-[#280b57] text-white shadow-md shadow-purple-900/20" : "text-gray-600 hover:text-white hover:bg-[#280b57] hover:shadow-md hover:shadow-purple-900/20"}`}>
-                  Services
-                  <svg
-                    className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                      activeDropdown === "solutions" ? "rotate-180 text-white" : "text-gray-400 group-hover:text-white"
-                    }`}
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Careers */}
-              <div
-                className="relative"
-                onMouseEnter={() => handleMouseEnter("careers")}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button className={`rounded-full transition-all duration-300 px-5 py-2.5 flex items-center gap-2 ${activeDropdown === "careers" ? "bg-[#280b57] text-white shadow-md shadow-purple-900/20" : "text-gray-600 hover:text-white hover:bg-[#280b57] hover:shadow-md hover:shadow-purple-900/20"}`}>
-                  Careers
-                  <svg
-                    className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                      activeDropdown === "careers" ? "rotate-180 text-white" : "text-gray-400 group-hover:text-white"
-                    }`}
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Contact */}
               <Link
                 href="/contact"
+                prefetch={false}
                 className="text-gray-600 hover:text-white hover:bg-[#280b57] hover:shadow-md hover:shadow-purple-900/20 rounded-full transition-all duration-300 px-5 py-2.5"
               >
                 Contact
               </Link>
             </nav>
 
-            {/* Right Side Items - Desktop */}
+            {/* Right Side Items */}
             <div className="hidden lg:flex items-center gap-3">
-              {/* Sign in - Outlined Premium Pill */}
               <Link
                 href="#"
+                prefetch={false}
                 className="text-[#280b57] border-2 border-[#280b57]/20 hover:bg-[#280b57] hover:border-[#280b57] hover:text-white transition-all duration-300 text-sm font-bold px-6 py-2 rounded-full mr-1 hover:shadow-lg hover:shadow-purple-900/20"
               >
                 Sign in
               </Link>
 
-              {/* WhatsApp Link */}
               <Link
                 href="https://wa.me/919711179821"
                 target="_blank"
@@ -207,14 +155,12 @@ export default function Header() {
                 </svg>
               </Link>
 
-              {/* Search */}
-              <button className="text-gray-500 hover:text-white hover:bg-[#280b57] rounded-full transition-all duration-300 p-2.5">
+              <button aria-label="Search" className="text-gray-500 hover:text-white hover:bg-[#280b57] rounded-full transition-all duration-300 p-2.5">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </button>
 
-              {/* Language Selector */}
               <div className="flex items-center gap-1.5 text-gray-500 hover:text-white hover:bg-[#280b57] rounded-full cursor-pointer px-4 py-2 transition-all duration-300">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
@@ -225,7 +171,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden text-[#280b57] bg-purple-50 hover:bg-[#280b57] hover:text-white transition-all duration-300 p-2.5 rounded-xl z-50 relative"
+              className="lg:hidden text-[#280b57] bg-purple-50 hover:bg-[#280b57] hover:text-white transition-all duration-300 p-2.5 rounded-xl z-50 relative will-change-transform"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle mobile menu"
             >
@@ -245,7 +191,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mega Menu Dropdowns with Smooth Framer Motion Slide */}
+      {/* Mega Menu Dropdowns */}
       <AnimatePresence>
         {activeDropdown && (
           <motion.div
@@ -253,23 +199,22 @@ export default function Header() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="absolute top-full left-0 right-0 w-full bg-white shadow-[0_30px_60px_-15px_rgba(40,11,87,0.1)] border-b border-gray-100 z-40 rounded-b-[2.5rem] overflow-hidden"
+            className="absolute top-full left-0 right-0 w-full bg-white shadow-[0_30px_60px_-15px_rgba(40,11,87,0.1)] border-b border-gray-100 z-40 rounded-b-[2.5rem] overflow-hidden will-change-transform"
             onMouseEnter={() => {
               if (timeoutRef.current) clearTimeout(timeoutRef.current);
             }}
             onMouseLeave={handleMouseLeave}
           >
-            {/* Top decorative gradient line */}
             <div className="h-1 w-full bg-gradient-to-r from-purple-100 via-[#280b57]/20 to-purple-100" />
             
             <div className="max-w-7xl mx-auto px-8 py-12">
+              
               {/* Services Mega Menu */}
               {activeDropdown === "solutions" && (
                 <div className="grid grid-cols-3 gap-10">
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span>
-                      Support Services
+                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Support Services
                     </h3>
                     <div className="space-y-1 text-sm font-semibold max-h-48 overflow-y-auto pr-4">
                       {[
@@ -278,7 +223,7 @@ export default function Header() {
                         { title: "Technical Helpdesk Services", href: "/services/technical-helpdesk" },
                         { title: "Ticketing Management", href: "/services/ticketing-management" },
                       ].map((item, idx) => (
-                        <Link key={idx} href={item.href} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
+                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
                           <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
                           <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
                         </Link>
@@ -288,8 +233,7 @@ export default function Header() {
 
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span>
-                      Business Operations
+                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Business Operations
                     </h3>
                     <div className="space-y-1 text-sm font-semibold max-h-48 overflow-y-auto pr-4">
                       {[
@@ -298,7 +242,7 @@ export default function Header() {
                         { title: "Collections Process", href: "/services/collections" },
                         { title: "Recruitment & Talent Support", href: "/services/recruitment" },
                       ].map((item, idx) => (
-                        <Link key={idx} href={item.href} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
+                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
                           <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
                           <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
                         </Link>
@@ -308,8 +252,7 @@ export default function Header() {
 
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span>
-                      Data & Technology
+                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Data & Technology
                     </h3>
                     <div className="space-y-1 text-sm font-semibold max-h-48 overflow-y-auto pr-4">
                       {[
@@ -318,7 +261,7 @@ export default function Header() {
                         { title: "Apps and Web Development", href: "/services/web-development" },
                         { title: "Graphic Design & Printing Solutions", href: "/services/graphic-design" },
                       ].map((item, idx) => (
-                        <Link key={idx} href={item.href} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
+                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
                           <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
                           <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
                         </Link>
@@ -333,8 +276,7 @@ export default function Header() {
                 <div className="grid grid-cols-3 gap-12">
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span>
-                      About Ashentrix
+                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> About Ashentrix
                     </h3>
                     <div className="space-y-1 text-sm font-semibold">
                       {[
@@ -345,7 +287,7 @@ export default function Header() {
                         { title: "News & Media", href: "/about/news-media" },
                         { title: "Investors & Partners", href: "/about/investors-partners" },
                       ].map((item, idx) => (
-                        <Link key={idx} href={item.href} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
+                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
                           <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
                           <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
                         </Link>
@@ -355,8 +297,7 @@ export default function Header() {
 
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span>
-                      Company
+                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Company
                     </h3>
                     <div className="space-y-1 text-sm font-semibold">
                       {[
@@ -364,7 +305,7 @@ export default function Header() {
                         { title: "Sustainability", href: "/sustainability" },
                         { title: "Contact Us", href: "/contact" },
                       ].map((item, idx) => (
-                        <Link key={idx} href={item.href} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
+                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
                           <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
                           <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
                         </Link>
@@ -392,8 +333,7 @@ export default function Header() {
                 <div className="grid grid-cols-3 gap-12">
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span>
-                      Core Industries
+                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Core Industries
                     </h3>
                     <div className="space-y-1 text-sm font-semibold">
                       {[
@@ -403,7 +343,7 @@ export default function Header() {
                         { title: "E-commerce", href: "/industries/ecommerce" },
                         { title: "Finance & Accounting", href: "/industries/finance" },
                       ].map((item, idx) => (
-                        <Link key={idx} href={item.href} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
+                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
                           <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
                           <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
                         </Link>
@@ -413,8 +353,7 @@ export default function Header() {
 
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span>
-                      Specialized Sectors
+                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Specialized Sectors
                     </h3>
                     <div className="space-y-1 text-sm font-semibold">
                       {[
@@ -423,7 +362,7 @@ export default function Header() {
                         { title: "Entertainment & Social Platforms", href: "/industries/entertainment" },
                         { title: "IT, Hardware & IoT", href: "/industries/it-hardware" },
                       ].map((item, idx) => (
-                        <Link key={idx} href={item.href} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
+                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
                           <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
                           <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
                         </Link>
@@ -454,8 +393,7 @@ export default function Header() {
                 <div className="grid grid-cols-3 gap-12">
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span>
-                      Join Our Team
+                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Join Our Team
                     </h3>
                     <div className="space-y-1 text-sm font-semibold">
                       {[
@@ -464,7 +402,7 @@ export default function Header() {
                         { title: "Internship Programs", href: "/careers/internship" },
                         { title: "Apply Now", href: "/careers/apply" },
                       ].map((item, idx) => (
-                        <Link key={idx} href={item.href} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
+                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
                           <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
                           <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
                         </Link>
@@ -474,8 +412,7 @@ export default function Header() {
 
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span>
-                      Why Choose Us
+                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Why Choose Us
                     </h3>
                     <div className="space-y-3 text-sm font-semibold text-gray-600 bg-gray-50/50 p-6 rounded-2xl border border-gray-100">
                       <div className="flex items-center gap-3"><span className="text-purple-400">•</span> Global work opportunities</div>
@@ -497,6 +434,7 @@ export default function Header() {
                     </p>
                     <Link
                       href="/careers/apply"
+                      prefetch={false}
                       onClick={() => setActiveDropdown(null)}
                       className="inline-flex items-center gap-2 bg-[#280b57] text-white px-6 py-3.5 rounded-full text-sm font-bold hover:bg-purple-900 hover:-translate-y-1 transition-all duration-300 shadow-md shadow-purple-900/20 relative z-10"
                     >
@@ -515,38 +453,36 @@ export default function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <div className="fixed inset-0 z-40 lg:hidden">
-            {/* Dark blur backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm will-change-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* Light Slide-out Drawer */}
             <motion.div
               variants={mobileDrawerVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="absolute right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl overflow-y-auto flex flex-col rounded-l-3xl border-l border-white/20"
+              className="absolute right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl overflow-y-auto flex flex-col rounded-l-3xl border-l border-white/20 will-change-transform"
             >
-              {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-gray-50/50">
                 <Image
                   src="/ashentrix.jpeg"
                   alt="Ashentrix Solutions"
                   width={140}
                   height={45}
+                  sizes="140px"
                   className="h-10 w-auto"
                 />
               </div>
 
-              {/* Navigation */}
               <nav className="p-5 space-y-2 flex-grow">
                 <Link
                   href="/"
+                  prefetch={false}
                   className="block text-gray-900 text-lg font-bold py-3.5 px-5 hover:bg-purple-50 hover:text-[#280b57] rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -566,14 +502,14 @@ export default function Header() {
                   </button>
                   <AnimatePresence>
                     {activeDropdown === "about" && (
-                      <motion.div variants={mobileMenuAccordionVariants} initial="hidden" animate="visible" exit="exit" className="bg-gray-50 border-x border-b border-gray-100 rounded-b-2xl">
+                      <motion.div variants={mobileMenuAccordionVariants} initial="hidden" animate="visible" exit="exit" className="bg-gray-50 border-x border-b border-gray-100 rounded-b-2xl will-change-transform">
                         <div className="p-3 space-y-1">
                           {[
                             { title: "About Ashentrix", href: "/about" },
                             { title: "Leadership", href: "/leadership" },
                             { title: "Vision & Mission", href: "/about/vision-mission" }
                           ].map((item, idx) => (
-                            <Link key={idx} href={item.href} className="block text-gray-600 font-semibold text-base py-3 px-4 hover:bg-white hover:text-[#280b57] rounded-xl transition-all shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Link key={idx} href={item.href} prefetch={false} className="block text-gray-600 font-semibold text-base py-3 px-4 hover:bg-white hover:text-[#280b57] rounded-xl transition-all shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
                               {item.title}
                             </Link>
                           ))}
@@ -596,7 +532,7 @@ export default function Header() {
                   </button>
                   <AnimatePresence>
                     {activeDropdown === "industries" && (
-                      <motion.div variants={mobileMenuAccordionVariants} initial="hidden" animate="visible" exit="exit" className="bg-gray-50 border-x border-b border-gray-100 rounded-b-2xl">
+                      <motion.div variants={mobileMenuAccordionVariants} initial="hidden" animate="visible" exit="exit" className="bg-gray-50 border-x border-b border-gray-100 rounded-b-2xl will-change-transform">
                         <div className="p-3 space-y-1">
                           {[
                             { title: "All Industries", href: "/industries" },
@@ -605,7 +541,7 @@ export default function Header() {
                             { title: "Telecom", href: "/industries/telecom" },
                             { title: "Banking & Finance", href: "/industries/finance" }
                           ].map((item, idx) => (
-                            <Link key={idx} href={item.href} className="block text-gray-600 font-semibold text-base py-3 px-4 hover:bg-white hover:text-[#280b57] rounded-xl transition-all shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Link key={idx} href={item.href} prefetch={false} className="block text-gray-600 font-semibold text-base py-3 px-4 hover:bg-white hover:text-[#280b57] rounded-xl transition-all shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
                               {item.title}
                             </Link>
                           ))}
@@ -628,7 +564,7 @@ export default function Header() {
                   </button>
                   <AnimatePresence>
                     {activeDropdown === "services" && (
-                      <motion.div variants={mobileMenuAccordionVariants} initial="hidden" animate="visible" exit="exit" className="bg-gray-50 border-x border-b border-gray-100 rounded-b-2xl">
+                      <motion.div variants={mobileMenuAccordionVariants} initial="hidden" animate="visible" exit="exit" className="bg-gray-50 border-x border-b border-gray-100 rounded-b-2xl will-change-transform">
                         <div className="p-3 space-y-1">
                           {[
                             { title: "Customer Support", href: "/services/customer-support" },
@@ -636,7 +572,7 @@ export default function Header() {
                             { title: "Back Office Operations", href: "/services/back-office" },
                             { title: "Data Processing", href: "/services/data-processing" }
                           ].map((item, idx) => (
-                            <Link key={idx} href={item.href} className="block text-gray-600 font-semibold text-base py-3 px-4 hover:bg-white hover:text-[#280b57] rounded-xl transition-all shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Link key={idx} href={item.href} prefetch={false} className="block text-gray-600 font-semibold text-base py-3 px-4 hover:bg-white hover:text-[#280b57] rounded-xl transition-all shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
                               {item.title}
                             </Link>
                           ))}
@@ -659,14 +595,14 @@ export default function Header() {
                   </button>
                   <AnimatePresence>
                     {activeDropdown === "careers" && (
-                      <motion.div variants={mobileMenuAccordionVariants} initial="hidden" animate="visible" exit="exit" className="bg-gray-50 border-x border-b border-gray-100 rounded-b-2xl">
+                      <motion.div variants={mobileMenuAccordionVariants} initial="hidden" animate="visible" exit="exit" className="bg-gray-50 border-x border-b border-gray-100 rounded-b-2xl will-change-transform">
                         <div className="p-3 space-y-1">
                           {[
                             { title: "Job Opportunities", href: "/careers" },
                             { title: "Company Culture", href: "/careers/culture" },
                             { title: "Apply Now", href: "/careers/apply" }
                           ].map((item, idx) => (
-                            <Link key={idx} href={item.href} className="block text-gray-600 font-semibold text-base py-3 px-4 hover:bg-white hover:text-[#280b57] rounded-xl transition-all shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Link key={idx} href={item.href} prefetch={false} className="block text-gray-600 font-semibold text-base py-3 px-4 hover:bg-white hover:text-[#280b57] rounded-xl transition-all shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
                               {item.title}
                             </Link>
                           ))}
@@ -678,6 +614,7 @@ export default function Header() {
 
                 <Link
                   href="/contact"
+                  prefetch={false}
                   className="block text-gray-900 text-lg font-bold py-3.5 px-5 hover:bg-purple-50 hover:text-[#280b57] rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -686,10 +623,10 @@ export default function Header() {
 
                 <div className="border-t border-gray-200 my-6 mx-2"></div>
 
-                {/* Additional Tools */}
                 <Link
                   href="https://wa.me/919711179821"
                   target="_blank"
+                  prefetch={false}
                   className="flex items-center justify-center gap-3 bg-green-50 text-green-700 font-bold text-base py-4 px-4 hover:bg-green-100 rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -701,6 +638,7 @@ export default function Header() {
 
                 <Link
                   href="#"
+                  prefetch={false}
                   className="flex items-center justify-center bg-[#280b57] text-white font-bold text-base py-4 px-4 hover:bg-purple-900 rounded-2xl transition-colors mt-4 shadow-lg shadow-purple-900/20"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -708,7 +646,6 @@ export default function Header() {
                 </Link>
               </nav>
 
-              {/* Mobile Footer */}
               <div className="p-6 bg-gray-50 border-t border-gray-100">
                 <p className="text-gray-500 text-xs text-center font-bold uppercase tracking-widest">
                   © 2026 Ashentrix Solutions
