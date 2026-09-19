@@ -20,53 +20,56 @@ import {
   TrendingUp
 } from "lucide-react";
 
+// [OPTIMIZATION 1]: Static data aur Variants ko component se bahar rakha hai.
+// Isse har baar scroll/render hone par ye dubara memory me create nahi honge (Saves RAM/CPU).
+const industries = [
+  { name: "Insurance Partnership", icon: Shield, industry: "Insurance", href: "/industries/insurance" },
+  { name: "Healthcare Solutions", icon: Heart, industry: "Healthcare", href: "/industries/healthcare" },
+  { name: "Telecom Services", icon: Radio, industry: "Telecom", href: "/industries/telecom" },
+  { name: "E-commerce Growth", icon: ShoppingCart, industry: "E-commerce", href: "/industries/ecommerce" },
+  { name: "Finance & Accounting", icon: DollarSign, industry: "Finance & Accounting", href: "/industries/finance" },
+  { name: "Logistics & Supply Chain", icon: Truck, industry: "Logistics & Supply Chain", href: "/industries/logistics-supply-chain" },
+  { name: "Travel & Hospitality", icon: Plane, industry: "Travel, Hospitality & Cargo", href: "/industries/travel" },
+  { name: "Entertainment & Social", icon: Film, industry: "Entertainment & Social Platforms", href: "/industries/social-platforms" },
+  { name: "IT, Hardware & IoT", icon: Computer, industry: "IT, Hardware & IoT", href: "/industries/hardware-iot" },
+  { name: "Real Estate & Property", icon: Building, industry: "Real Estate", href: "/industries/real-estate" },
+  { name: "Education & EdTech", icon: GraduationCap, industry: "Education & EdTech", href: "/industries/education" },
+  { name: "Govt. & Public Sector", icon: Landmark, industry: "Govt. & Public Sector", href: "/industries/govt-public-sector" },
+];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
 export default function ClientLogosSection() {
-  const industries = [
-    { name: "Insurance Partnership", icon: Shield, industry: "Insurance", href: "/industries/insurance" },
-    { name: "Healthcare Solutions", icon: Heart, industry: "Healthcare", href: "/industries/healthcare" },
-    { name: "Telecom Services", icon: Radio, industry: "Telecom", href: "/industries/telecom" },
-    { name: "E-commerce Growth", icon: ShoppingCart, industry: "E-commerce", href: "/industries/ecommerce" },
-    { name: "Finance & Accounting", icon: DollarSign, industry: "Finance & Accounting", href: "/industries/finance" },
-    { name: "Logistics & Supply Chain", icon: Truck, industry: "Logistics & Supply Chain", href: "/industries/logistics-supply-chain" },
-    { name: "Travel & Hospitality", icon: Plane, industry: "Travel, Hospitality & Cargo", href: "/industries/travel" },
-    { name: "Entertainment & Social", icon: Film, industry: "Entertainment & Social Platforms", href: "/industries/social-platforms" },
-    { name: "IT, Hardware & IoT", icon: Computer, industry: "IT, Hardware & IoT", href: "/industries/hardware-iot" },
-    { name: "Real Estate & Property", icon: Building, industry: "Real Estate", href: "/industries/real-estate" },
-    { name: "Education & EdTech", icon: GraduationCap, industry: "Education & EdTech", href: "/industries/education" },
-    { name: "Govt. & Public Sector", icon: Landmark, industry: "Govt. & Public Sector", href: "/industries/govt-public-sector" },
-  ];
-
-  // Framer Motion Variants for Smooth Staggered Animations (Error-Free)
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
   return (
     <section className="relative overflow-hidden py-20 lg:py-28 bg-[#F8FAFC]">
-      {/* Subtle Background Glows & Image Overlay (Adjusted for better visibility) */}
+      {/* Subtle Background Glows & Image Overlay */}
+      {/* [OPTIMIZATION 2]: 'will-change-transform' add kiya taaki scroll pe repaints kam hon */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-50 pointer-events-none"
+        className="absolute inset-0 bg-cover bg-center opacity-50 pointer-events-none will-change-transform"
         style={{ backgroundImage: "url('/growing-image.webp')" }}
       />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/50 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100/50 blur-[100px] rounded-full pointer-events-none" />
+      {/* [OPTIMIZATION 3]: Heavy blurs ko mobile (hidden md:block) se hata diya ya optimize kar diya hai taaki mobile devices hang na hon */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/50 blur-[120px] rounded-full pointer-events-none will-change-transform hidden md:block" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100/50 blur-[100px] rounded-full pointer-events-none will-change-transform hidden md:block" />
       
-      {/* Light Overlay to ensure text readability while keeping image visible */}
+      {/* Light Overlay to ensure text readability */}
       <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
 
       {/* Main Content Container */}
@@ -78,7 +81,7 @@ export default function ClientLogosSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-16 lg:mb-20 will-change-transform will-change-opacity"
         >
           <div className="inline-block mb-4">
             <span className="text-xs sm:text-sm font-bold text-[#280b57] uppercase tracking-wider bg-white/80 backdrop-blur-md border border-purple-100 rounded-full px-5 py-2 shadow-sm">
@@ -101,12 +104,14 @@ export default function ClientLogosSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 items-start"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 items-start will-change-opacity"
         >
           {industries.map((industry, index) => (
-            <motion.div key={index} variants={itemVariants} className="h-full">
+            <motion.div key={index} variants={itemVariants} className="h-full will-change-transform will-change-opacity">
+              {/* [OPTIMIZATION 4]: prefetch={false} add kiya gaya hai. Isse Next.js in 12 links ka data background me ek sath download nahi karega. */}
               <Link 
                 href={industry.href} 
+                prefetch={false}
                 className="flex flex-col items-center group cursor-pointer h-full"
               >
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 backdrop-blur-md shadow-sm border border-purple-50 flex items-center justify-center mb-4 group-hover:bg-[#280b57] group-hover:border-[#280b57] group-hover:shadow-[0_15px_30px_rgba(40,11,87,0.2)] transition-all duration-300 rounded-[1.25rem] transform group-hover:-translate-y-2">
@@ -129,7 +134,7 @@ export default function ClientLogosSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-20 pt-10 border-t border-purple-200/40"
+          className="text-center mt-20 pt-10 border-t border-purple-200/40 will-change-transform will-change-opacity"
         >
           <p className="text-[#280b57] text-xs sm:text-sm font-extrabold uppercase tracking-widest mb-6">
             Building Our Client Base With Trust
