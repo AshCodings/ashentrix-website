@@ -135,7 +135,7 @@ export default function HeroSection() {
             className="relative rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50 md:-translate-y-8 lg:-translate-y-12 group border border-white/50"
           >
             <Image
-              src="/images/home.jpg"
+              src="/images/home.webp"
               alt="Business Operations"
               width={800}
               height={600}
