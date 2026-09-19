@@ -196,25 +196,28 @@ export default function DisclaimerPage() {
         </SectionCard>
 
         {/* Section 18 - Contact Info */}
-        <SectionCard id="sec-18" title="Contact Information">
+        {/* Contact Info (Section 20) */}
+        <SectionCard id="sec-20" title="Contact Us">
           <div className="bg-[#0F172A] rounded-2xl p-8 text-white relative overflow-hidden mt-2">
-            {/* Decorative background shape */}
             <svg className="absolute -right-10 -bottom-10 w-48 h-48 text-white/5 transform rotate-12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             
             <h3 className="text-xl font-bold mb-6 flex items-center gap-3 relative z-10">
               <span className="bg-purple-500/20 p-2 rounded-lg text-purple-400">
                 <FileText className="w-6 h-6" />
               </span>
-              Ashentrix Solutions Pvt. Ltd.
+              Ashentrix Solutions Pvt. Ltd. {/*[cite: 6] */}
             </h3>
             
             <div className="space-y-4 text-gray-300 relative z-10">
-              <p>A-22, 1st Floor, Sector 4, Noida,<br/>Gautam Buddha Nagar, Uttar Pradesh, India &ndash; 201301</p>
-              <p><span className="font-semibold text-white">Email:</span> <a href="mailto:service@ashentrix.com" className="hover:text-purple-300 transition-colors">service@ashentrix.com</a></p>
-              <p><span className="font-semibold text-white">Phone:</span> <a href="tel:+919711179821" className="hover:text-purple-300 transition-colors">+91-971 117 9821</a></p>
-              <div className="flex items-center gap-3 pt-2">
-                <Link href="https://www.ashentrix.com" className="hover:text-white transition-colors underline decoration-purple-500/50 underline-offset-4">www.ashentrix.com</Link>
+              <p><span className="font-semibold text-white">Address:</span> A-22, 1st Floor, Sector 4, Noida, Gautam Buddha Nagar, Uttar Pradesh, India &ndash; 201301 {/*[cite: 6] */}</p>
+              <p><span className="font-semibold text-white">Email:</span> <a href="mailto:service@ashentrix.com" className="hover:text-purple-300 transition-colors">service@ashentrix.com</a> {/*[cite: 6] */}</p>
+              <p><span className="font-semibold text-white">Phone / WhatsApp:</span> <a href="tel:+919711179821" className="hover:text-purple-300 transition-colors">+91-971 117 9821</a> {/*[cite: 6] */}</p>
+              <div className="flex items-center gap-3 pt-2"> <span className="font-semibold text-white">Website:</span>
+                <Link href="https://www.ashentrix.com" className="hover:text-white transition-colors underline decoration-purple-500/50 underline-offset-4">www.ashentrix.com</Link> {/*[cite: 6] */}
               </div>
+              <p className="text-sm mt-4 pt-4 border-t border-gray-700/50">
+                For business or service enquiries, please use the Contact Us section of our Website. {/*[cite: 6] */}
+              </p>
             </div>
           </div>
         </SectionCard>
