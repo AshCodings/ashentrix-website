@@ -11,7 +11,6 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // useCallback se functions memoize kiye hain taaki unnecessary re-renders na hon
   const handleMouseEnter = useCallback((dropdownName: string) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -25,13 +24,12 @@ export default function Header() {
     }, 200);
   }, []);
 
-  // Hardware acceleration ke liye transition properties optimized ki hain
   const megaMenuVariants: Variants = {
     hidden: { opacity: 0, y: -10 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] } // Custom cubic-bezier for smoother feel
+      transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] } 
     },
     exit: { 
       opacity: 0, 
@@ -44,7 +42,7 @@ export default function Header() {
     hidden: { x: "100%" },
     visible: { 
       x: 0, 
-      transition: { type: "spring", damping: 25, stiffness: 200, mass: 0.8 } // Mass kam kiya smooth spring ke liye
+      transition: { type: "spring", damping: 25, stiffness: 200, mass: 0.8 }
     },
     exit: { 
       x: "100%", 
@@ -103,7 +101,7 @@ export default function Header() {
 
             {/* Main Navigation */}
             <nav className="hidden lg:flex items-center gap-1.5 text-sm font-semibold">
-              {['about', 'industries', 'solutions', 'careers'].map((navItem) => (
+              {['about', 'industries', 'Services', 'careers'].map((navItem) => (
                 <div
                   key={navItem}
                   className="relative"
@@ -210,7 +208,7 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-8 py-12">
               
               {/* Services Mega Menu */}
-              {activeDropdown === "solutions" && (
+              {activeDropdown === "Services" && (
                 <div className="grid grid-cols-3 gap-10">
                   <div>
                     <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
@@ -271,64 +269,97 @@ export default function Header() {
                 </div>
               )}
 
-              {/* About Us Mega Menu */}
+              {/* About Us Mega Menu - NEW GRID LAYOUT */}
               {activeDropdown === "about" && (
-                <div className="grid grid-cols-3 gap-12">
-                  <div>
-                    <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> About Ashentrix
-                    </h3>
-                    <div className="space-y-1 text-sm font-semibold">
-                      {[
-                        { title: "About Ashentrix", href: "/about" },
-                        { title: "Vision & Mission", href: "/about/vision-mission" },
-                        { title: "Leadership", href: "/leadership" },
-                        { title: "Awards & Recognition", href: "/about/awards" },
-                        { title: "News & Media", href: "/about/news-media" },
-                        { title: "Investors & Partners", href: "/about/investors-partners" },
-                      ].map((item, idx) => (
-                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
-                          <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
-                          <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
-                        </Link>
-                      ))}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                  
+                  {/* Left Side: Navigation Links (Takes 8 columns) */}
+                  <div className="lg:col-span-8 grid grid-cols-2 gap-8 lg:pr-8 lg:border-r border-gray-100">
+                    
+                    {/* Column 1: Discover */}
+                    <div>
+                      <h3 className="text-xs font-black text-purple-400 mb-5 tracking-widest uppercase flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Discover
+                      </h3>
+                      <div className="space-y-1">
+                        {[
+                          { title: "About Ashentrix", href: "/about", desc: "Our story, vision, and core values" },
+                          { title: "Vision & Mission", href: "/about/vision-mission", desc: "What drives our future forward" },
+                          { title: "Leadership", href: "/leadership", desc: "Meet our executive team" },
+                        ].map((item, idx) => (
+                          <Link 
+                            key={idx} 
+                            href={item.href} 
+                            prefetch={false} 
+                            className="flex flex-col group p-3 hover:bg-purple-50/80 rounded-xl transition-all duration-300" 
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span className="text-sm font-bold text-[#0F172A] group-hover:text-[#280b57] transition-colors">{item.title}</span>
+                            <span className="text-xs text-gray-500 font-medium mt-0.5">{item.desc}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Column 2: Corporate */}
+                    <div>
+                      <h3 className="text-xs font-black text-purple-400 mb-5 tracking-widest uppercase flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Corporate
+                      </h3>
+                      <div className="space-y-1">
+                        {[
+                          { title: "Awards & Recognition", href: "/about/awards", desc: "Industry accolades and milestones" },
+                          { title: "Investors & Partners", href: "/about/investors-partners", desc: "Our global business network" },
+                          { title: "News & Media", href: "/about/news-media", desc: "Latest announcements and press" },
+                        ].map((item, idx) => (
+                          <Link 
+                            key={idx} 
+                            href={item.href} 
+                            prefetch={false} 
+                            className="flex flex-col group p-3 hover:bg-purple-50/80 rounded-xl transition-all duration-300" 
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span className="text-sm font-bold text-[#0F172A] group-hover:text-[#280b57] transition-colors">{item.title}</span>
+                            <span className="text-xs text-gray-500 font-medium mt-0.5">{item.desc}</span>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  <div>
-                    <h3 className="text-xs font-black text-purple-400 mb-6 tracking-widest uppercase flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#280b57]"></span> Company
-                    </h3>
-                    <div className="space-y-1 text-sm font-semibold">
-                      {[
-                        { title: "Careers", href: "/careers" },
-                        { title: "Sustainability", href: "/sustainability" },
-                        { title: "Contact Us", href: "/contact" },
-                      ].map((item, idx) => (
-                        <Link key={idx} href={item.href} prefetch={false} className="flex items-center gap-3 text-gray-600 hover:text-[#280b57] hover:bg-purple-50 px-4 py-3 rounded-xl transition-all duration-300 group" onClick={() => setActiveDropdown(null)}>
-                          <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#280b57] transition-colors" />
-                          <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
-                        </Link>
-                      ))}
+                  {/* Right Side: Quick Facts Solid Card (Takes 4 columns) */}
+                  <div className="lg:col-span-4 h-full">
+                    <div className="bg-gradient-to-br from-[#280b57] to-purple-900 h-full p-8 rounded-[2rem] border border-purple-800 relative overflow-hidden shadow-lg shadow-purple-900/10 flex flex-col justify-center">
+                      {/* Decorative Background Glow */}
+                      <div className="absolute -top-12 -right-12 w-48 h-48 bg-purple-500/30 blur-3xl rounded-full pointer-events-none" />
+                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-500/20 blur-2xl rounded-full pointer-events-none" />
+                      
+                      <h4 className="font-extrabold text-white mb-8 text-xl relative z-10 flex items-center justify-between">
+                        Quick Facts
+                        <svg className="w-5 h-5 text-purple-300 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      </h4>
+                      
+                      <div className="space-y-6 text-sm relative z-10">
+                        <div className="flex flex-col">
+                          <span className="text-purple-300 font-bold uppercase text-[10px] tracking-widest mb-1.5">Founded</span> 
+                          <span className="font-bold text-white text-base">2025</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-purple-300 font-bold uppercase text-[10px] tracking-widest mb-1.5">Headquarters</span> 
+                          <span className="font-bold text-white text-base leading-snug">Noida, Uttar Pradesh,<br/>India</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-purple-300 font-bold uppercase text-[10px] tracking-widest mb-1.5">Team Size</span> 
+                          <span className="font-bold text-white text-base">50 to 100 Experts</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-gray-50 to-purple-50/50 p-8 rounded-3xl border border-purple-100/50 relative overflow-hidden">
-                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-200/40 blur-3xl rounded-full" />
-                    <h4 className="font-extrabold text-[#0F172A] mb-5 text-lg relative z-10">
-                      Quick Facts
-                    </h4>
-                    <div className="space-y-4 text-sm relative z-10">
-                      <div className="flex flex-col"><span className="text-purple-400 font-bold uppercase text-[10px] tracking-widest">Founded</span> <span className="font-bold text-gray-800">2025</span></div>
-                      <div className="flex flex-col"><span className="text-purple-400 font-bold uppercase text-[10px] tracking-widest">Headquarters</span> <span className="font-bold text-gray-800">Noida, Uttar Pradesh, India</span></div>
-                      <div className="flex flex-col"><span className="text-purple-400 font-bold uppercase text-[10px] tracking-widest">Team</span> <span className="font-bold text-gray-800">50 to 100 Experts</span></div>
-                      <div className="flex flex-col"><span className="text-purple-400 font-bold uppercase text-[10px] tracking-widest">Focus</span> <span className="font-bold text-gray-800">New Global Partnerships</span></div>
-                    </div>
-                  </div>
                 </div>
               )}
 
-              {/* Industries Mega Menu */}
+              {/* Industries Mega Menu  */}
               {activeDropdown === "industries" && (
                 <div className="grid grid-cols-3 gap-12">
                   <div>
