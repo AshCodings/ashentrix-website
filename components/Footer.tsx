@@ -1,279 +1,212 @@
 "use client";
 
 import Link from "next/link";
+import { motion, Variants } from "framer-motion";
+import { Send, MapPin, Globe, Phone, Clock, Mail, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
+
+// Static link arrays component ke bahar
+const aboutLinks = [
+  { name: "About Ashentrix", href: "/about" },
+  { name: "Vision & Mission", href: "/about/vision-mission" },
+  { name: "Leadership", href: "/leadership" },
+  { name: "Awards & Recognition", href: "/about/awards" },
+  { name: "News & Media", href: "/about/news-media" },
+  { name: "Investors & Partners", href: "/about/investors-partners" },
+];
+
+const careerLinks = [
+  { name: "Life at Ashentrix", href: "/careers/life-at-ashentrix" },
+  { name: "Current Openings", href: "/careers/current-openings" },
+  { name: "Internship Programs", href: "/careers/internship" },
+  { name: "Apply Now", href: "/careers/apply" },
+];
+
+const contactLinks = [
+  { name: "Contact Form", href: "/contact" },
+  { name: "Office Locations", href: "/contact/locations" },
+  { name: "Partner With Us", href: "/contact/partner" },
+];
+
+const legalLinks = [
+  { name: "Privacy Policy", href: "/privacy-policy" },
+  { name: "Data Security & Compliance", href: "/data_security_compliance" },
+  { name: "Terms of Service", href: "/legal" },
+  { name: "Disclaimer", href: "/disclaimer" },
+];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1E293B] text-white">
+    <footer className="relative bg-[#0A0F1C] text-white overflow-hidden pt-16 sm:pt-20 lg:pt-24 pb-8 border-t border-gray-800">
+      {/* Subtle Background Ambient Glows */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#280b57]/30 blur-[120px] rounded-full pointer-events-none will-change-transform hidden md:block" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-900/20 blur-[100px] rounded-full pointer-events-none will-change-transform hidden md:block" />
+
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 will-change-opacity"
+      >
         {/* Top Section - Brand and Newsletter */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-8 lg:mb-10 pb-8 lg:pb-10 border-b border-gray-700">
+        <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-12 lg:mb-16 pb-12 lg:pb-16 border-b border-white/10 will-change-transform will-change-opacity">
           <div className="text-center lg:text-left">
-            <h3 className="text-3xl sm:text-4xl font-black text-white italic mb-3 sm:mb-4">
+            <h3 className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-white italic mb-4 tracking-tighter">
               Ashentrix
             </h3>
-            <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6 max-w-md mx-auto lg:mx-0">
+            <p className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 font-medium">
               Leading the future of business process outsourcing with
               innovation, excellence, and transformative solutions.
             </p>
           </div>
 
-          <div className="text-center lg:text-left">
-            <h4 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">
+          <div className="text-center lg:text-left flex flex-col justify-center">
+            <h4 className="text-xl sm:text-2xl font-bold text-white mb-3 tracking-tight">
               Stay Updated
             </h4>
-            <p className="text-gray-400 mb-3 sm:mb-4 text-sm sm:text-base">
+            <p className="text-gray-400 mb-5 text-sm sm:text-base font-medium">
               Subscribe to our newsletter for the latest insights, case studies,
               and industry trends.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3">
+            <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto lg:mx-0 w-full relative">
               <input
                 type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-[#280b57] text-white placeholder-gray-500 text-sm sm:text-base"
+                required
+                placeholder="Enter your email address..."
+                className="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 text-white placeholder-gray-500 transition-all duration-300 backdrop-blur-sm"
               />
-              <button className="bg-[#280b57] text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-[#1f0944] transition-all whitespace-nowrap text-sm sm:text-base">
+              <button 
+                type="submit"
+                className="bg-gradient-to-r from-[#280b57] to-purple-700 text-white px-8 py-4 rounded-xl font-bold hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all duration-300 flex items-center justify-center gap-2 group whitespace-nowrap will-change-transform"
+              >
                 Subscribe
+                <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </form>
           </div>
-        </div>
+        </motion.div>
 
         {/* Links Section - Responsive Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-8 lg:mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 lg:mb-16">
+          
           {/* About */}
-          <div className="mb-6 sm:mb-0">
-            <h4 className="font-bold text-base sm:text-lg mb-4 text-white">
-              About
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-400">
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  About Ashentrix
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about/vision-mission"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Vision & Mission
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/leadership"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Leadership
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about/awards"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Awards & Recognition
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about/news-media"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  News & Media
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about/investors-partners"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Investors & Partners
-                </Link>
-              </li>
+          <motion.div variants={itemVariants} className="will-change-transform will-change-opacity">
+            <h4 className="font-bold text-lg mb-6 text-white tracking-wide">About Us</h4>
+            <ul className="space-y-4 text-sm font-medium text-gray-400">
+              {aboutLinks.map((link, idx) => (
+                <li key={idx}>
+                  <Link href={link.href} prefetch={false} className="hover:text-purple-400 transition-colors inline-flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Careers */}
-          <div className="mb-6 sm:mb-0">
-            <h4 className="font-bold text-base sm:text-lg mb-4 text-white">
-              Careers
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-400">
-              <li>
-                <Link
-                  href="/careers/life-at-ashentrix"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Life at Ashentrix
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers/current-openings"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Current Openings
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers/internship"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Internship Programs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers/apply"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Apply Now
-                </Link>
-              </li>
+          <motion.div variants={itemVariants} className="will-change-transform will-change-opacity">
+            <h4 className="font-bold text-lg mb-6 text-white tracking-wide">Careers</h4>
+            <ul className="space-y-4 text-sm font-medium text-gray-400">
+              {careerLinks.map((link, idx) => (
+                <li key={idx}>
+                  <Link href={link.href} prefetch={false} className="hover:text-purple-400 transition-colors inline-flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Contact */}
-          <div className="mb-6 sm:mb-0">
-            <h4 className="font-bold text-base sm:text-lg mb-4 text-white">
-              Contact
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-400">
-              <li>
-                <Link
-                  href="/contact"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Contact Form
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact/locations"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Office Locations
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact/partner"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Partner With Us
-                </Link>
-              </li>
+          <motion.div variants={itemVariants} className="will-change-transform will-change-opacity">
+            <h4 className="font-bold text-lg mb-6 text-white tracking-wide">Contact</h4>
+            <ul className="space-y-4 text-sm font-medium text-gray-400">
+              {contactLinks.map((link, idx) => (
+                <li key={idx}>
+                  <Link href={link.href} prefetch={false} className="hover:text-purple-400 transition-colors inline-flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Legal */}
-          <div className="mb-6 sm:mb-0">
-            <h4 className="font-bold text-base sm:text-lg mb-4 text-white">
-              Legal
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-400">
-              <li>
-                <Link
-                  href="/privacy-policy"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/data_security_compliance"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Data Security & Compliance
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/legal"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/disclaimer"
-                  className="hover:text-[#9b87f5] transition-colors"
-                >
-                  Disclaimer
-                </Link>
-              </li>
+          <motion.div variants={itemVariants} className="will-change-transform will-change-opacity">
+            <h4 className="font-bold text-lg mb-6 text-white tracking-wide">Legal</h4>
+            <ul className="space-y-4 text-sm font-medium text-gray-400">
+              {legalLinks.map((link, idx) => (
+                <li key={idx}>
+                  <Link href={link.href} prefetch={false} className="hover:text-purple-400 transition-colors inline-flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Premium Information Card (Distinct Corporate Layout) */}
-        <div className="bg-[#0F172A]/80 border border-gray-700/50 rounded-2xl p-5 sm:p-8 mb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Premium Information Card (Glassmorphism Layout) */}
+        <motion.div variants={itemVariants} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 lg:p-10 mb-10 shadow-2xl relative overflow-hidden will-change-transform will-change-opacity">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 blur-[50px] hidden md:block" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 relative z-10">
             {/* Headquarters */}
             <div className="flex gap-4 items-start">
-              {/* Map Icon with Hover Effect */}
               <a
                 href="https://maps.app.goo.gl/dUGQXaC57fm5eXQi9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-800/80 p-3 rounded-lg text-gray-300 shrink-0 hover:bg-[#280b57] hover:text-white transition-all hover:scale-105 group"
+                className="bg-white/10 p-3.5 rounded-xl text-purple-300 shrink-0 hover:bg-purple-500 hover:text-white transition-all hover:scale-110 hover:-rotate-3 group will-change-transform"
                 aria-label="View Ashentrix Solutions on Google Maps"
               >
-                <svg
-                  className="w-5 h-5 group-hover:animate-bounce"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+                <MapPin className="w-6 h-6 group-hover:animate-bounce" />
               </a>
-
               <div>
-                <h4 className="font-bold text-white mb-1.5">Headquarters</h4>
-
-                {/* Clickable Address Text */}
-                <p className="text-gray-400 text-sm leading-relaxed mb-2">
+                <h4 className="font-bold text-white mb-2 tracking-wide uppercase text-sm">Headquarters</h4>
+                <p className="text-gray-400 text-sm leading-relaxed mb-3">
                   <a
                     href="https://maps.app.goo.gl/dUGQXaC57fm5eXQi9"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#9b87f5] transition-colors"
+                    className="hover:text-purple-300 transition-colors"
                   >
-                    A-22, 1st Floor, Sector 4, Noida,
-                    <br />
-                    Gautam Buddha Nagar, Uttar Pradesh,
-                    <br />
+                    A-22, 1st Floor, Sector 4, Noida,<br />
+                    Gautam Buddha Nagar, U.P.,<br />
                     India - 201301
                   </a>
                 </p>
-
-                {/* Website Link */}
                 <a
                   href="https://www.ashentrix.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-semibold text-white hover:text-[#9b87f5] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-white hover:text-purple-400 transition-colors"
                 >
+                  <Globe className="w-4 h-4" />
                   www.ashentrix.com
                 </a>
               </div>
@@ -281,74 +214,27 @@ export default function Footer() {
 
             {/* Reach Us */}
             <div className="flex gap-4 items-start">
-              <div className="bg-gray-800/80 p-3 rounded-lg text-gray-300 shrink-0">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
+              <div className="bg-white/10 p-3.5 rounded-xl text-purple-300 shrink-0">
+                <Phone className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-bold text-white mb-1.5">Reach us</h4>
-                <div className="space-y-3 text-sm text-gray-400">
-                  {/* Email */}
-                  <p className="flex items-center gap-2.5">
-                    <svg
-                      className="w-5 h-5 text-gray-500 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                    <a
-                      href="mailto:service@ashentrix.com"
-                      className="text-white hover:text-[#9b87f5] transition-colors"
-                    >
+                <h4 className="font-bold text-white mb-2 tracking-wide uppercase text-sm">Reach Us</h4>
+                <div className="space-y-3 text-sm font-medium text-gray-400">
+                  <p className="flex items-center gap-3">
+                    <Mail className="w-4 h-4 text-gray-500 flex-shrink-0" />
+                    <a href="mailto:service@ashentrix.com" className="text-white hover:text-purple-400 transition-colors">
                       service@ashentrix.com
                     </a>
                   </p>
-
-                  {/* Phone */}
-                  <p className="flex items-center gap-2.5">
-                    <svg
-                      className="w-5 h-5 text-gray-500 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
-                    <a
-                      href="tel:+919711179821"
-                      className="text-white hover:text-[#9b87f5] transition-colors"
-                    >
+                  <p className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-gray-500 flex-shrink-0" />
+                    <a href="tel:+919711179821" className="text-white hover:text-purple-400 transition-colors">
                       +91-971 117 9821
                     </a>
                   </p>
-
-                  {/* WhatsApp */}
-                  <p className="flex items-center gap-2.5">
+                   <p className="flex items-center gap-2.5">
                     <svg
-                      className="w-5 h-5 text-gray-500 flex-shrink-0"
+                      className="w-4 h-4 text-gray-500 flex-shrink-0"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -369,103 +255,72 @@ export default function Footer() {
 
             {/* Business Hours */}
             <div className="flex gap-4 items-start">
-              <div className="bg-gray-800/80 p-3 rounded-lg text-gray-300 shrink-0">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+              <div className="bg-white/10 p-3.5 rounded-xl text-purple-300 shrink-0">
+                <Clock className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-bold text-white mb-1.5">Business Hours</h4>
-                <div className="space-y-1.5 text-sm text-gray-400">
-                  <p>
-                    Mon to Sat:{" "}
-                    <span className="text-white">10 AM to 8 PM</span>
-                  </p>
-                  <p>
-                    Sun: <span className="text-white">Closed</span>
-                  </p>
-                  <div className="mt-3 inline-flex items-center gap-2 bg-[#280b57]/30 text-purple-200 px-3 py-1 rounded-full text-xs font-medium border border-[#280b57]/50">
-                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                <h4 className="font-bold text-white mb-2 tracking-wide uppercase text-sm">Business Hours</h4>
+                <div className="space-y-2 text-sm font-medium text-gray-400">
+                  <p>Mon to Sat: <span className="text-white ml-1">10 AM to 8 PM</span></p>
+                  <p>Sunday: <span className="text-white ml-1">Closed</span></p>
+                  <div className="mt-4 inline-flex items-center gap-2 bg-green-500/10 text-green-400 px-3 py-1.5 rounded-full text-xs font-bold border border-green-500/20">
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                     24/7 Support Available
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
+
         {/* Bottom Bar */}
-        <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-6 text-xs sm:text-sm text-gray-400 pt-8 mt-4 border-t border-gray-800">
-          {/* Copyright text - Goes Bottom on Mobile, Left on Desktop */}
+        <motion.div variants={itemVariants} className="flex flex-col-reverse lg:flex-row justify-between items-center gap-6 text-sm font-medium text-gray-500 pt-8 mt-4 border-t border-white/10 will-change-transform will-change-opacity">
+          
           <p className="text-center lg:text-left">
-            © 2026 Ashentrix. All rights reserved worldwide.
+            © {new Date().getFullYear()} Ashentrix Solutions. All rights reserved worldwide.
           </p>
 
-          {/* Social Icons - Goes Top on Mobile, Right on Desktop */}
+          {/* Social Icons */}
           <div className="flex gap-3 sm:gap-4 justify-center lg:justify-end">
             <a
               href="https://www.linkedin.com/company/ashentrix/"
-              className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#280b57] transition-all hover:scale-110"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] hover:-translate-y-1 transition-all duration-300 will-change-transform"
+              aria-label="LinkedIn"
             >
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-              </svg>
+              <Linkedin className="w-5 h-5" />
             </a>
             <a
               href="https://x.com/AshentrixS"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#280b57] transition-all hover:scale-110"
-              aria-label="Follow us on X (formerly Twitter)"
+              className="w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:bg-black hover:text-white hover:border-gray-700 hover:-translate-y-1 transition-all duration-300 will-change-transform"
+              aria-label="X (Twitter)"
             >
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-              </svg>
+              <Twitter className="w-5 h-5" />
             </a>
             <a
               href="https://www.facebook.com/share/1G9RXYRy3V/"
-              className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#280b57] transition-all hover:scale-110"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:-translate-y-1 transition-all duration-300 will-change-transform"
+              aria-label="Facebook"
             >
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
+              <Facebook className="w-5 h-5" />
             </a>
             <a
               href="https://www.instagram.com/ashentrixsolutions?stkn=MTBuMzZvc2UwaWo0cQ=="
-              className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#280b57] transition-all hover:scale-110"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-pink-500 hover:to-purple-600 hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300 will-change-transform"
+              aria-label="Instagram"
             >
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-              </svg>
+              <Instagram className="w-5 h-5" />
             </a>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </footer>
   );
 }
