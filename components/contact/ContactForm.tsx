@@ -15,7 +15,9 @@ export default function ContactForm() {
     const formData = new FormData(form);
 
     // Add the Web3Forms access key
-    formData.append("access_key", "8d5a9af8-325d-4da9-9ccb-5bb326b436d6");
+    // formData.append("access_key", "8d5a9af8-325d-4da9-9ccb-5bb326b436d6");
+    // Add the Web3Forms access key
+    formData.append("access_key", "97839ee1-e786-4316-8634-f024a0a383e3");
 
     // Add additional metadata for Web3Forms
     formData.append(
@@ -232,7 +234,6 @@ export default function ContactForm() {
                       +91-971 117 9821
                     </a>
                   </p>
-                 
                 </div>
               </div>
 
@@ -300,7 +301,7 @@ export default function ContactForm() {
                 <div className="flex justify-between">
                   <span className="text-gray-600">Mon to Sat:</span>
                   <span className="text-gray-900 font-medium">
-                    10 AM to 8 PM
+                    10 AM to 6 PM
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -315,6 +316,22 @@ export default function ContactForm() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* --- ADDED MAP SECTION BELOW --- */}
+        <div className="w-full mt-20">
+          <div className="w-full h-[450px] md:h-[500px] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.6016463148517!2d77.32266349999999!3d28.5817224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5837176aa05%3A0x9c5200f7548c66ac!2sAshentrix%20Solutions%20Private%20Limited!5e0!3m2!1sen!2sin!4v1789820293394!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              className="w-full h-full grayscale-[20%] contrast-[1.1]" // Optional: Map ko thoda modern look dene ke liye
+            ></iframe>
           </div>
         </div>
       </div>
