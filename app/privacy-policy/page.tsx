@@ -104,11 +104,11 @@ export default function PrivacyPolicyPage() {
 
         {/* Sections */}
         <SectionCard id="sec-1" title="Who We Are">
-          <p>Ashentrix Solutions Pvt. Ltd. is a Delhi NCR, India-based business process management and outsourcing company providing customer support, technical support, back-office operations, data services, analytics, collections, recruitment support, operations management and technology-enabled services. {/*[cite: 6] */}</p>
+          <p>Ashentrix Solutions Pvt. Ltd. is a Noida, India-based business process management and outsourcing company providing customer support, technical support, back-office operations, data services, analytics, collections, recruitment support, operations management and technology-enabled services. {/*[cite: 6] */}</p>
           <div className="bg-gray-50 p-4 rounded-xl mt-4 border border-gray-100 text-sm">
             <p className="font-semibold text-gray-900 mb-2">Operational address published on our Website:</p>
-            <p>A-22, 1st Floor, Sector 4, Noida, Gautam Buddha Nagar, Uttar Pradesh, India &ndash; 201301. {/*[cite: 6] */}</p>
-            <p className="mt-2"><span className="font-medium text-gray-900">General contact:</span> <a href="mailto:service@ashentrix.com" className="text-purple-600 hover:underline">service@ashentrix.com</a> {/*[cite: 6] */}</p>
+            <p><span className="font-medium text-gray-900">Address:</span> A-22, 1st Floor, Sector 4, Noida, Gautam Buddha Nagar, Uttar Pradesh, India &ndash; 201301. {/*[cite: 6] */}</p>
+            <p className="mt-2"><span className="font-medium text-gray-900">Email:</span> <a href="mailto:service@ashentrix.com" className="text-purple-600 hover:underline">service@ashentrix.com</a> {/*[cite: 6] */}</p>
             <p><span className="font-medium text-gray-900">Website:</span> <Link href="https://www.ashentrix.com" className="text-purple-600 hover:underline">www.ashentrix.com</Link> {/*[cite: 6] */}</p>
           </div>
         </SectionCard>
@@ -221,10 +221,10 @@ export default function PrivacyPolicyPage() {
             </h3>
             
             <div className="space-y-4 text-gray-300 relative z-10">
-              <p>A-22, 1st Floor, Sector 4, Noida,<br/>Gautam Buddha Nagar, Uttar Pradesh, India &ndash; 201301 {/*[cite: 6] */}</p>
+              <p><span className="font-semibold text-white">Address:</span> A-22, 1st Floor, Sector 4, Noida, Gautam Buddha Nagar, Uttar Pradesh, India &ndash; 201301 {/*[cite: 6] */}</p>
               <p><span className="font-semibold text-white">Email:</span> <a href="mailto:service@ashentrix.com" className="hover:text-purple-300 transition-colors">service@ashentrix.com</a> {/*[cite: 6] */}</p>
               <p><span className="font-semibold text-white">Phone / WhatsApp:</span> <a href="tel:+919711179821" className="hover:text-purple-300 transition-colors">+91-971 117 9821</a> {/*[cite: 6] */}</p>
-              <div className="flex items-center gap-3 pt-2">
+              <div className="flex items-center gap-3 pt-2"> <span className="font-semibold text-white">Website:</span>
                 <Link href="https://www.ashentrix.com" className="hover:text-white transition-colors underline decoration-purple-500/50 underline-offset-4">www.ashentrix.com</Link> {/*[cite: 6] */}
               </div>
               <p className="text-sm mt-4 pt-4 border-t border-gray-700/50">
